@@ -18,6 +18,12 @@ namespace OnlineShop.Library.Data
                             .Where(x => x.IsDeleted == false)
                             .OrderByDescending(x => x.LastUpdateDate);
         }
+        public ShopItemDbModel GetShopItemById(Guid id)
+        {
+            return _shopContext.ShopItems
+                            .Where(x => x.IsDeleted == false)
+                            .First(x => x.Id == id);
+        }
         public IEnumerable<ShopItemDbModel> GetShopItemByCategory(CategoryDbModel category)
         {
             return _shopContext.ShopItems

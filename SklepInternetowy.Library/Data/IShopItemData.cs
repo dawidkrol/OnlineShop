@@ -9,5 +9,6 @@ namespace OnlineShop.Library.Data
         IEnumerable<ShopItemDbModel> GetShopItemByCategory(CategoryDbModel category);
         IEnumerable<ShopItemDbModel> GetShopItems();
         Task UpdateShopItemAsync(ShopItemDbModel model);
+        ShopItemDbModel GetShopItemById(Guid id);
     }
 }

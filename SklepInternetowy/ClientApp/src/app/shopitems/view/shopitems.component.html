@@ -1,9 +1,9 @@
 <h1>Shop items</h1>
+<button class="btn-primary" (click)="goToAdd()">Add new item</button>
 
 <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="shopitems">
   <thead>
     <tr>
-      <th>id</th>
       <th>name</th>
       <th>description</th>
       <th>price</th>
@@ -11,10 +11,11 @@
   </thead>
   <tbody>
     <tr *ngFor="let shopitem of shopitems">
-      <td>{{ shopitem.id }}</td>
       <td>{{ shopitem.name }}</td>
       <td>{{ shopitem.description }}</td>
       <td>{{ shopitem.price }}</td>
+      <td><button class="btn-primary" (click)="goToEdit(shopitem.id)">Edit</button></td>
+      <td><button class="btn-primary" (click)="goToDelete(shopitem.id)">Delete</button></td>
     </tr>
   </tbody>
 </table>

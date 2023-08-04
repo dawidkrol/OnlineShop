@@ -25,5 +25,11 @@ namespace OnlineShop.Controllers
         {
             return _shopItemHelper.GetShopItems();
         }
+
+        [HttpGet("getById/{id}")]
+        public ShopItemModel Get(Guid id)
+        {
+            return _shopItemHelper.GetShopItemsById(id);
+        }
     }
 }
