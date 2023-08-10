@@ -1,1 +1,47 @@
-<label>Add</label>
+<input type="text" maxlength="50" [(ngModel)]="newItem.name" size="30" />
+
+<br />
+
+<input type="text" [(ngModel)]="newItem.description" size="30" />
+
+<br />
+
+<input type="number" [(ngModel)]="newItem.price" size="30" />
+
+<br />
+
+<input type="number" [(ngModel)]="newItem.quantity" size="30" />
+
+<br /><select [(ngModel)]="newItem.category" required>
+  <option label="--select something --" selected></option>
+  <option *ngFor="let category of categories" [value]="category">
+    {{category.name}}
+  </option>
+</select>
+
+<br />
+
+<div class="text-center">
+  <input class="form-control" type="file"
+         (change)="onChange($event)">
+
+  <button (click)="onUpload()"
+          class="btn btn-success">
+    Upload
+  </button>
+</div>
+
+<br />
+
+<div>
+  <a *ngFor="let img of imageModels" href="{{img.imageUri}}">
+    {{img.imageUri}}<br />
+  </a>
+</div>
+
+<div class="container" *ngIf="loading">
+  <h3>Loading ...</h3>
+</div>
+
+
+{{newItem.name}} {{newItem.description}} {{newItem.price}} 

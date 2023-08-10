@@ -7,6 +7,7 @@ const PROXY_CONFIG = [
   {
     context: [
       "/shopitems",
+      "/categories"
    ],
     target: target,
     secure: false,

@@ -1,4 +1,5 @@
-﻿using OnlineShop.Library.Database;
+﻿using Microsoft.EntityFrameworkCore;
+using OnlineShop.Library.Database;
 using SklepInternetowy.Library.Models;
 
 namespace OnlineShop.Library.Data
@@ -16,7 +17,8 @@ namespace OnlineShop.Library.Data
         {
             return _shopContext.ShopItems
                             .Where(x => x.IsDeleted == false)
-                            .OrderByDescending(x => x.LastUpdateDate);
+                            .OrderByDescending(x => x.LastUpdateDate)
+                            .AsEnumerable();
         }
         public ShopItemDbModel GetShopItemById(Guid id)
         {

@@ -13,7 +13,7 @@ namespace OnlineShop.Library.Data
         }
         public IEnumerable<CategoryDbModel> GetCategories()
         {
-            return _shopContext.Categories.Where(x => x.IsDeleted == false);
+            return _shopContext.Categories.Where(x => x.IsDeleted == false).AsEnumerable();
         }
         public async Task CreateCategoryAsync(CategoryDbModel category)
         {

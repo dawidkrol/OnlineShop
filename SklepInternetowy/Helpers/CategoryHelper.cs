@@ -16,9 +16,16 @@ namespace OnlineShop.Helpers
         }
         public IEnumerable<CategoryModel> GetCategories()
         {
-            var dbData = _categoryData.GetCategories();
-            var output = _mapper.Map<IEnumerable<CategoryModel>>(dbData);
+            IEnumerable<CategoryModel> output = new List<CategoryModel>();
+            try
+            {
+                var dbData = _categoryData.GetCategories();
+                output = _mapper.Map<IEnumerable<CategoryModel>>(dbData);
+            }
+            catch (Exception ex)
+            {
 
+            }
             return output;
         }
     }
