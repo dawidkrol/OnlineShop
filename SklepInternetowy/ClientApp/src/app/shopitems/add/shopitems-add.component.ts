@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ShopItemsModel } from '../../classes/ShopItemsModel'
 import { CategoryModel } from '../../classes/CategoryModel'
 import { ImageModel } from '../../classes/ImageModel'
@@ -57,11 +57,16 @@ export class ShopitemsAddComponent  {
 
     var categ = this.categories[this.categories.findIndex(x => x.id === this.selectedCategory)];
     this.newItem.categoryId = categ.id;
-
-    const headers = { 'content-type': 'application/json' }
+    this.newItem.images = this.imageModels;
+    var headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const body = JSON.stringify(this.newItem);
-    console.log(body)
-
-    this.http.post(this.baseUrl + 'shopitems', body, { 'headers': headers });
+    console.log(body);
+    console.log(headers);
+    console.log(this.baseUrl + 'shopitems');
+    this.http.post(this.baseUrl + 'shopitems', body, { headers: headers }).subscribe(
+      res => console.log('HTTP response', res),
+      err => console.log('HTTP Error', err),
+      () => console.log('HTTP request completed.')
+    );;
   }
 }

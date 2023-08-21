@@ -32,7 +32,7 @@ namespace OnlineShop.Controllers
             return _shopItemHelper.GetShopItemsById(id);
         }
         [HttpPost]
-        public async Task Create(ShopItemModel model)
+        public async Task Post(ShopItemModel model)
         {
             await _shopItemHelper.CreateShopItem(model);
         }
