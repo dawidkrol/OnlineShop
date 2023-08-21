@@ -16,13 +16,10 @@ namespace OnlineShop.Library.Database
             {
                 entity.HasKey(x => x.Id);
 
-                entity.HasMany(x => x.Images)
-                    .WithOne(x => x.ShopItem)
-                    .HasForeignKey(x => x.Id);
+                //entity.HasMany(x => x.Images)
+                //    .WithOne(x => x.ShopItem)
+                //    .HasForeignKey(x => x.Id);
 
-                entity.HasOne(x => x.Category)
-                    .WithMany(x => x.ShopItems)
-                    .HasPrincipalKey(x => x.Id);
 
                 entity.Property(x => x.Price)
                     .HasColumnType("DECIMAL(18,2)");

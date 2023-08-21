@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnlineShop.Library.Database;
 
@@ -11,9 +12,10 @@ using OnlineShop.Library.Database;
 namespace OnlineShop.Library.Migrations
 {
     [DbContext(typeof(ShopContext))]
-    partial class ShopContextModelSnapshot : ModelSnapshot
+    [Migration("20230810132654_up")]
+    partial class up
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -66,9 +68,6 @@ namespace OnlineShop.Library.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("CategoryDbModelId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<Guid>("CategoryId")
                         .HasColumnType("uniqueidentifier");
 
@@ -100,7 +99,7 @@ namespace OnlineShop.Library.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryDbModelId");
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("ShopItems");
                 });
@@ -118,9 +117,13 @@ namespace OnlineShop.Library.Migrations
 
             modelBuilder.Entity("SklepInternetowy.Library.Models.ShopItemDbModel", b =>
                 {
-                    b.HasOne("SklepInternetowy.Library.Models.CategoryDbModel", null)
+                    b.HasOne("SklepInternetowy.Library.Models.CategoryDbModel", "Category")
                         .WithMany("ShopItems")
-                        .HasForeignKey("CategoryDbModelId");
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("SklepInternetowy.Library.Models.CategoryDbModel", b =>

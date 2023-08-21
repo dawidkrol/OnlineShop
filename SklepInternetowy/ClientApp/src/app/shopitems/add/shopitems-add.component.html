@@ -12,9 +12,9 @@
 
 <input type="number" [(ngModel)]="newItem.quantity" size="30" />
 
-<br /><select [(ngModel)]="newItem.category" required>
+<br /><select [(ngModel)]="selectedCategory" required>
   <option label="--select something --" selected></option>
-  <option *ngFor="let category of categories" [value]="category">
+  <option *ngFor="let category of categories" [value]="category.id">
     {{category.name}}
   </option>
 </select>
@@ -44,4 +44,8 @@
 </div>
 
 
-{{newItem.name}} {{newItem.description}} {{newItem.price}} 
+{{newItem.name}} {{newItem.description}} {{newItem.price}}
+
+
+<br/>
+<button class="btn-primary" (click)="onAddItem()"></button>

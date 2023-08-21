@@ -24,7 +24,7 @@ export class ShopitemsAddComponent  {
   file: File = {} as File;
   imageModels: ImageModel[] = [];
 
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string, private fileUploadService: FileUploadService) {
+  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, private fileUploadService: FileUploadService) {
 
     http.get<CategoryModel[]>(baseUrl + 'categories').subscribe(result => {
       this.categories = result;
@@ -34,7 +34,7 @@ export class ShopitemsAddComponent  {
 
   onChange(event: any) {
     this.file = event.target.files[0];
-    console.log(this.newItem.category.name);
+    console.log(this.newItem.categoryId);
   }
 
   onUpload() {
@@ -51,5 +51,17 @@ export class ShopitemsAddComponent  {
         }
       }
     );
+  }
+
+  onAddItem() {
+
+    var categ = this.categories[this.categories.findIndex(x => x.id === this.selectedCategory)];
+    this.newItem.categoryId = categ.id;
+
+    const headers = { 'content-type': 'application/json' }
+    const body = JSON.stringify(this.newItem);
+    console.log(body)
+
+    this.http.post(this.baseUrl + 'shopitems', body, { 'headers': headers });
   }
 }

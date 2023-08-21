@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using OnlineShop.Library.Data;
 using OnlineShop.Model;
+using SklepInternetowy.Library.Models;
 using System.Collections.Generic;
+using System.Xml.Linq;
 
 namespace OnlineShop.Helpers
 {
@@ -39,6 +41,12 @@ namespace OnlineShop.Helpers
             var output = _mapper.Map<ShopItemModel>(dbData);
 
             return output;
+        }
+
+        public async Task CreateShopItem(ShopItemModel model)
+        {
+            var mapped = _mapper.Map<ShopItemDbModel>(model);
+            await _shopItemData.CreateShopItemAsync(mapped);
         }
     }
 }
