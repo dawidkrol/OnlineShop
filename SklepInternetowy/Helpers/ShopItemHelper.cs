@@ -48,5 +48,10 @@ namespace OnlineShop.Helpers
             var mapped = _mapper.Map<ShopItemDbModel>(model);
             await _shopItemData.CreateShopItemAsync(mapped);
         }
+
+        public async Task DeleteShopItem(Guid id)
+        {
+            await _shopItemData.DeleteShopItem(id);
+        }
     }
 }

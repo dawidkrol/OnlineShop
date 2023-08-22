@@ -36,5 +36,10 @@ namespace OnlineShop.Controllers
         {
             await _shopItemHelper.CreateShopItem(model);
         }
+        [HttpDelete]
+        public async Task Delete(Guid id)
+        {
+            await _shopItemHelper.DeleteShopItem(id);
+        }
     }
 }

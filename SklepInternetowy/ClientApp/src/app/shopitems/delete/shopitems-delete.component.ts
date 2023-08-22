@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { ShopItemsModel } from '../../classes/ShopItemsModel'
 
 @Component({
@@ -8,7 +8,7 @@ import { ShopItemsModel } from '../../classes/ShopItemsModel'
   templateUrl: './shopitems-delete.component.html'
 })
 export class ShopitemsDeleteComponent {
-  public _id: string | undefined;
+  public _id: string = '';
 
   constructor(private route: ActivatedRoute, http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     this.route
@@ -17,8 +17,14 @@ export class ShopitemsDeleteComponent {
         this._id = params['itemsToDeleteId'];
       });
 
-    console.log('id to delete: ' + this._id);
+    let httpParams = new HttpParams().set('id', this._id);
 
-    //http.delete(baseUrl + 'shopitems/' + this._id).subscribe(result => { }, error => console.error(error));
+    let options = { params: httpParams };
+
+    http.delete(baseUrl + 'shopitems', options).subscribe(
+      res => console.log('HTTP response', res),
+      err => console.log('HTTP Error', err),
+      () => console.log('HTTP request completed.')
+    );
   }
 }

@@ -7,5 +7,6 @@ namespace OnlineShop.Helpers
         IEnumerable<ShopItemModel> GetShopItems();
         ShopItemModel GetShopItemsById(Guid id);
         Task CreateShopItem(ShopItemModel model);
+        Task DeleteShopItem(Guid id);
     }
 }

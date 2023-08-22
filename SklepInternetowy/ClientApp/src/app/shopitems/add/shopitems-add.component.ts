@@ -67,6 +67,6 @@ export class ShopitemsAddComponent  {
       res => console.log('HTTP response', res),
       err => console.log('HTTP Error', err),
       () => console.log('HTTP request completed.')
-    );;
+    );
   }
 }
