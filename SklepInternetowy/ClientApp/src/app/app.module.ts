@@ -23,6 +23,7 @@ import { ShopitemsComponent } from './shopitems/view/shopitems.component';
 import { ShopitemsEditComponent } from './shopitems/edit/shopitems-edit.component';
 import { ShopitemsAddComponent } from './shopitems/add/shopitems-add.component';
 import { ShopitemsDeleteComponent } from './shopitems/delete/shopitems-delete.component';
+import { ShopitemsViewOneComponent } from './shopitems/viewOne/shopitems-viewone.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { ShopitemsDeleteComponent } from './shopitems/delete/shopitems-delete.co
     ShopitemsEditComponent,
     ShopitemsDeleteComponent,
     ShopitemsAddComponent,
+    ShopitemsViewOneComponent
   ],
   imports: [
     CommonModule,
@@ -57,6 +59,7 @@ import { ShopitemsDeleteComponent } from './shopitems/delete/shopitems-delete.co
       { path: 'shopitems-edit', component: ShopitemsEditComponent },
       { path: 'shopitems-add', component: ShopitemsAddComponent },
       { path: 'shopitems-delete', component: ShopitemsDeleteComponent },
+      { path: 'shopitems-viewone', component: ShopitemsViewOneComponent },
     ])
   ],
   providers: [],

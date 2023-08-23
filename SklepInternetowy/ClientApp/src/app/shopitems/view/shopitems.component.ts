@@ -32,4 +32,8 @@ export class ShopitemsComponent {
     this._router.navigate(['/shopitems-delete'], { queryParams: { itemsToDeleteId: par } });
   }
 
+  goToView(par: string) {
+    this._router.navigate(['/shopitems-viewone'], { queryParams: { itemsToViewId: par } });
+  }
+
 }

@@ -14,6 +14,7 @@
       <td>{{ shopitem.name }}</td>
       <td>{{ shopitem.description }}</td>
       <td>{{ shopitem.price }}</td>
+      <td><button class="btn-primary" (click)="goToView(shopitem.id)">More info</button></td>
       <td><button class="btn-primary" (click)="goToEdit(shopitem.id)">Edit</button></td>
       <td><button class="btn-primary" (click)="goToDelete(shopitem.id)">Delete</button></td>
     </tr>
