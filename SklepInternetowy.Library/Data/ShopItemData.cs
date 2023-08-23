@@ -17,14 +17,20 @@ namespace OnlineShop.Library.Data
         {
             return _shopContext.ShopItems
                             .Where(x => x.IsDeleted == false)
+                            .Include(x => x.Images)
                             .OrderByDescending(x => x.LastUpdateDate)
                             .AsEnumerable();
         }
         public ShopItemDbModel GetShopItemById(Guid id)
         {
-            return _shopContext.ShopItems
+            var data = _shopContext.ShopItems
                             .Where(x => x.IsDeleted == false)
+                            .Include(x => x.Images)
                             .First(x => x.Id == id);
+
+            //data.Images = _shopContext.Images.Where(x => x.ShopItem == data);
+
+            return data;
         }
         public IEnumerable<ShopItemDbModel> GetShopItemByCategory(CategoryDbModel category)
         {

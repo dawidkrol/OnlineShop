@@ -41,5 +41,10 @@ namespace OnlineShop.Controllers
         {
             await _shopItemHelper.DeleteShopItem(id);
         }
+        [HttpPut]
+        public async Task Update(ShopItemModel model)
+        {
+            await _shopItemHelper.UpdateShopItem(model);
+        }
     }
 }

@@ -1,7 +1,47 @@
-<td>{{ item.id }}</td><br>
-<td>{{ item.name }}</td><br>
-<td>{{ item.description }}</td><br>
-<td>{{ item.price }}</td><br>
-<td>{{ item.images }}</td><br>
-<td>{{ item.createdDate }}</td><br>
-<td>{{ item.lastUpdateDate }}<td>
+<input type="text" maxlength="50" [(ngModel)]="item.name" size="30" />
+
+<br />
+
+<input type="text" [(ngModel)]="item.description" size="30" />
+
+<br />
+
+<input type="number" [(ngModel)]="item.price" size="30" />
+
+<br />
+
+<input type="number" [(ngModel)]="item.quantity" size="30" />
+
+<!--<br /><select [(ngModel)]="selectedCategory" required>
+  <option label="--select something --" selected></option>
+  <option *ngFor="let category of categories" [value]="category.id">
+    {{category.name}}
+  </option>
+</select>-->
+
+<br />
+
+<!--<div class="text-center">
+  <input class="form-control" type="file"
+         (change)="onChange($event)">
+
+  <button (click)="onUpload()"
+          class="btn btn-success">
+    Upload
+  </button>
+</div>-->
+
+<br />
+
+
+<div>
+  <a *ngFor="let img of item.images" href="{{img.imageUri}}">
+    {{img.imageUri}}<br />
+  </a>
+</div>
+
+
+{{item.name}} {{item.description}} {{item.price}}
+
+<br />
+<button class="btn-primary" (click)="onUpdate()">Update</button>

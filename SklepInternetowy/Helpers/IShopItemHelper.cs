@@ -8,5 +8,6 @@ namespace OnlineShop.Helpers
         ShopItemModel GetShopItemsById(Guid id);
         Task CreateShopItem(ShopItemModel model);
         Task DeleteShopItem(Guid id);
+        Task UpdateShopItem(ShopItemModel model);
     }
 }
