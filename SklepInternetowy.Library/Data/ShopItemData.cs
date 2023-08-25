@@ -18,6 +18,7 @@ namespace OnlineShop.Library.Data
             return _shopContext.ShopItems
                             .Where(x => x.IsDeleted == false)
                             .Include(x => x.Images)
+                            //.Include(x => x.Category)
                             .OrderByDescending(x => x.LastUpdateDate)
                             .AsEnumerable();
         }
@@ -26,6 +27,7 @@ namespace OnlineShop.Library.Data
             var data = _shopContext.ShopItems
                             .Where(x => x.IsDeleted == false)
                             .Include(x => x.Images)
+                            //.Include(x => x.Category)
                             .First(x => x.Id == id);
 
             //data.Images = _shopContext.Images.Where(x => x.ShopItem == data);
@@ -62,7 +64,6 @@ namespace OnlineShop.Library.Data
             item.LastUpdateDate = DateTime.Now;
 
             item.IsDeleted = false;
-
             _shopContext.ShopItems.Add(item);
             await _shopContext.SaveChangesAsync();
         }

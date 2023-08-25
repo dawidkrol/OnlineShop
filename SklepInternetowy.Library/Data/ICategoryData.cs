@@ -8,5 +8,6 @@ namespace OnlineShop.Library.Data
         Task DeleteCategoryAsync(Guid categoryId);
         IEnumerable<CategoryDbModel> GetCategories();
         Task UpdateCategoryAsync(CategoryDbModel category);
+        CategoryDbModel GetCategory(Guid id);
     }
 }

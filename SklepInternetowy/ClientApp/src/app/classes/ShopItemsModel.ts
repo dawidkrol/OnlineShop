@@ -5,6 +5,7 @@ export interface ShopItemsModel {
   id: string;
   name: string;
   categoryId: string;
+  category: CategoryModel;
   description: string;
   price: number;
   quantity: number;

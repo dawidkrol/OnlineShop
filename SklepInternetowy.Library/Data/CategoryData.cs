@@ -15,6 +15,10 @@ namespace OnlineShop.Library.Data
         {
             return _shopContext.Categories.Where(x => x.IsDeleted == false).AsEnumerable();
         }
+        public CategoryDbModel GetCategory(Guid id)
+        {
+            return _shopContext.Categories.Where(x => x.IsDeleted == false).Where(x => x.Id == id).Single();
+        }
         public async Task CreateCategoryAsync(CategoryDbModel category)
         {
             if (category == null)

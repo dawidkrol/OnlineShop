@@ -11,11 +11,13 @@ namespace OnlineShop.Helpers
     {
         private readonly IMapper _mapper;
         private readonly IShopItemData _shopItemData;
+        private readonly ICategoryData _categoryData;
 
-        public ShopItemHelper(IMapper mapper, IShopItemData shopItemData)
+        public ShopItemHelper(IMapper mapper, IShopItemData shopItemData, ICategoryData categoryData)
         {
             _mapper = mapper;
             _shopItemData = shopItemData;
+            _categoryData = categoryData;
         }
         public IEnumerable<ShopItemModel> GetShopItems()
         {
@@ -24,6 +26,11 @@ namespace OnlineShop.Helpers
             {
                 var dbData = _shopItemData.GetShopItems();
                 output = _mapper.Map<IEnumerable<ShopItemModel>>(dbData);
+                foreach (var item in output)
+                {
+                    var ct = _mapper.Map<CategoryModel>(_categoryData.GetCategory(item.CategoryId));
+                    item.Category = ct;
+                }
 
                 return output;
             }
@@ -39,7 +46,8 @@ namespace OnlineShop.Helpers
         {
             var dbData = _shopItemData.GetShopItemById(id);
             var output = _mapper.Map<ShopItemModel>(dbData);
-
+            var ct = _mapper.Map<CategoryModel>(_categoryData.GetCategory(output.CategoryId));
+            output.Category = ct;
             return output;
         }
 

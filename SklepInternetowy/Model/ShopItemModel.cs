@@ -1,4 +1,6 @@
-﻿using static System.Net.Mime.MediaTypeNames;
+﻿using SklepInternetowy.Library.Models;
+using System.ComponentModel.DataAnnotations;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace OnlineShop.Model
 {
@@ -8,6 +10,7 @@ namespace OnlineShop.Model
         public Guid OwnerId { get; set; }
         public string Name { get; set; }
         public Guid CategoryId { get; set; }
+        public CategoryModel? Category { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
         public uint Quantity { get; set; }
