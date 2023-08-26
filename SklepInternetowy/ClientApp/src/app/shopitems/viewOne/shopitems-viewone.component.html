@@ -11,6 +11,8 @@
       <c-carousel-control [routerLink] caption="Previous" direction="prev"></c-carousel-control>
       <c-carousel-control [routerLink] caption="Next" direction="next"></c-carousel-control>
     </c-carousel>-->
+
+    <img src="{{img.imageUri}}" *ngFor="let img of item.images" style="width:300px;height:200px;"/>
   </div>
   <div style="width: 40%; ">
     <div style="margin: auto; text-align: center; ">
