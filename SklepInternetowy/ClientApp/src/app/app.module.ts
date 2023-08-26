@@ -24,6 +24,26 @@ import { ShopitemsEditComponent } from './shopitems/edit/shopitems-edit.componen
 import { ShopitemsAddComponent } from './shopitems/add/shopitems-add.component';
 import { ShopitemsDeleteComponent } from './shopitems/delete/shopitems-delete.component';
 import { ShopitemsViewOneComponent } from './shopitems/viewOne/shopitems-viewone.component';
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+import { getStorage } from "firebase/storage";
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyBh-SY_WiK5_rpn1y6efxem50bzAJUUQro",
+  authDomain: "monali-32546.firebaseapp.com",
+  projectId: "monali-32546",
+  storageBucket: "monali-32546.appspot.com",
+  messagingSenderId: "109368355128",
+  appId: "1:109368355128:web:98ac0b576b5901b7ecb9cd",
+  measurementId: "G-VKELVSKJRJ"
+};
+
+//// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const storage = getStorage(app);
 
 @NgModule({
   declarations: [
@@ -52,6 +72,8 @@ import { ShopitemsViewOneComponent } from './shopitems/viewOne/shopitems-viewone
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+    AlertModule,
+    BrowserAnimationsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },

@@ -1,6 +1,16 @@
 <div style="display:flex">
   <div style="width:60%;margin:auto;">
-    {{item.name}}
+    <!--<c-carousel [interval]="0">
+      <c-carousel-inner>
+        <c-carousel-item *ngFor="let img of item.images">
+          <img [src]="img.imageUri"
+               class="d-block w-100"
+               loading="lazy" />
+        </c-carousel-item>
+      </c-carousel-inner>
+      <c-carousel-control [routerLink] caption="Previous" direction="prev"></c-carousel-control>
+      <c-carousel-control [routerLink] caption="Next" direction="next"></c-carousel-control>
+    </c-carousel>-->
   </div>
   <div style="width: 40%; ">
     <div style="margin: auto; text-align: center; ">
