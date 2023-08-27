@@ -43,7 +43,7 @@ export class ShopitemsAddComponent  {
     console.log(this.file);
 
     const storage = getStorage();
-    const storageRef = ref(storage, this.file.name);
+    const storageRef = ref(storage, this.newItem.name + '/' + this.file.name);
 
     const uploadTask = uploadBytesResumable(storageRef, this.file);
 

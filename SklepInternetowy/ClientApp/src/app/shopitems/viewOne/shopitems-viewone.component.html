@@ -1,18 +1,16 @@
 <div style="display:flex">
   <div style="width:60%;margin:auto;">
-    <!--<c-carousel [interval]="0">
-      <c-carousel-inner>
-        <c-carousel-item *ngFor="let img of item.images">
-          <img [src]="img.imageUri"
-               class="d-block w-100"
-               loading="lazy" />
-        </c-carousel-item>
-      </c-carousel-inner>
-      <c-carousel-control [routerLink] caption="Previous" direction="prev"></c-carousel-control>
-      <c-carousel-control [routerLink] caption="Next" direction="next"></c-carousel-control>
-    </c-carousel>-->
-
-    <img src="{{img.imageUri}}" *ngFor="let img of item.images" style="width:300px;height:200px;"/>
+    <ngx-slick-carousel class="carousel"
+                        #slickModal="slick-carousel"
+                        [config]="slideConfig"
+                        (init)="slickInit($event)"
+                        (breakpoint)="breakpoint($event)"
+                        (afterChange)="afterChange($event)"
+                        (beforeChange)="beforeChange($event)">
+      <div ngxSlickItem *ngFor="let img of item.images" class="slide">
+        <img src="{{ img.imageUri }}" alt="" width="100%">
+      </div>
+    </ngx-slick-carousel>
   </div>
   <div style="width: 40%; ">
     <div style="margin: auto; text-align: center; ">

@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
@@ -14,6 +14,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonModule } from '@angular/material/button';
+import { register } from 'swiper/element/bundle';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -28,6 +30,8 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getStorage } from "firebase/storage";
 
+
+register();
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
@@ -55,7 +59,7 @@ const storage = getStorage(app);
     ShopitemsEditComponent,
     ShopitemsDeleteComponent,
     ShopitemsAddComponent,
-    ShopitemsViewOneComponent
+    //ShopitemsViewOneComponent
   ],
   imports: [
     CommonModule,
@@ -72,6 +76,8 @@ const storage = getStorage(app);
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+    ShopitemsViewOneComponent,
+    SlickCarouselModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
@@ -79,8 +85,8 @@ const storage = getStorage(app);
       { path: 'shopitems-edit', component: ShopitemsEditComponent },
       { path: 'shopitems-add', component: ShopitemsAddComponent },
       { path: 'shopitems-delete', component: ShopitemsDeleteComponent },
-      { path: 'shopitems-viewone', component: ShopitemsViewOneComponent },
-    ])
+      { path: 'shopitems-viewone', component: ShopitemsViewOneComponent, pathMatch: 'full' },
+    ]),
   ],
   providers: [],
   bootstrap: [AppComponent],
@@ -95,7 +101,9 @@ const storage = getStorage(app);
     MatIconModule,
     MatSelectModule,
     MatRadioModule,
-    MatButtonModule
-  ]
+    MatButtonModule,
+
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
