@@ -1,22 +1,19 @@
 <h1>Shop items</h1>
 <button class="btn-primary" (click)="goToAdd()">Add new item</button>
 
-<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="shopitems">
-  <thead>
-    <tr>
-      <th>name</th>
-      <th>description</th>
-      <th>price</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let shopitem of shopitems">
-      <td>{{ shopitem.name }}</td>
-      <td>{{ shopitem.description }}</td>
-      <td>{{ shopitem.price }}</td>
-      <td><button class="btn-primary" (click)="goToView(shopitem.id)">More info</button></td>
-      <td><button class="btn-primary" (click)="goToEdit(shopitem.id)">Edit</button></td>
-      <td><button class="btn-primary" (click)="goToDelete(shopitem.id)">Delete</button></td>
-    </tr>
-  </tbody>
-</table>
+<div *ngFor="let shopitem of shopitems" style="display:flex; width:90%; margin:10px; border: solid black 1px; text-align:center; align-content:center">
+  <div style="display: block; width: 30%;">Images</div>
+  <div style="display: block; width: 60%;">
+    <div>{{ shopitem.name }}</div>
+    <div>{{ shopitem.description }}</div>
+  </div>
+  <div style="display: block; width: 10%;">
+    <div>{{ shopitem.price }}</div>
+    <div>{{ shopitem.quantity }}</div>
+  </div>
+  <div style="display: block; width: 10%;">
+    <div><button class="btn-primary" (click)="goToView(shopitem.id)">More info</button></div>
+    <div><button class="btn-primary" (click)="goToEdit(shopitem.id)">Edit</button></div>
+    <div><button class="btn-primary" (click)="goToDelete(shopitem.id)">Delete</button></div>
+  </div>
+</div>
