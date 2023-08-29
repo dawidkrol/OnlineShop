@@ -19,7 +19,6 @@ import { register } from 'swiper/element/bundle';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
 import { ShopitemsComponent } from './shopitems/view/shopitems.component';
 import { ShopitemsEditComponent } from './shopitems/edit/shopitems-edit.component';
 import { ShopitemsAddComponent } from './shopitems/add/shopitems-add.component';
@@ -53,7 +52,6 @@ const storage = getStorage(app);
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    CounterComponent,
     ShopitemsComponent,
     ShopitemsEditComponent,
     ShopitemsDeleteComponent,
@@ -78,7 +76,6 @@ const storage = getStorage(app);
     ShopitemsViewOneComponent,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
       { path: 'shopitems', component: ShopitemsComponent },
       { path: 'shopitems-edit', component: ShopitemsEditComponent },
       { path: 'shopitems-add', component: ShopitemsAddComponent },

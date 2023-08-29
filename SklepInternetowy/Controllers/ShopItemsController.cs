@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using SklepInternetowy.Controllers;
 using SklepInternetowy;
 using OnlineShop.Helpers;
 using OnlineShop.Model;
