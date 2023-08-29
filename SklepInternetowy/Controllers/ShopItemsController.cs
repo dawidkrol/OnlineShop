@@ -31,6 +31,12 @@ namespace OnlineShop.Controllers
         {
             return _shopItemHelper.GetShopItemsById(id);
         }
+
+        [HttpGet("getByCategoryId/{id}")]
+        public IEnumerable<ShopItemModel> GetByCategoryId(Guid id)
+        {
+            return _shopItemHelper.GetShopItemsByCategoryId(id);
+        }
         [HttpPost]
         public async Task Post(ShopItemModel model)
         {

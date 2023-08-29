@@ -10,5 +10,6 @@ namespace OnlineShop.Library.Data
         IEnumerable<ShopItemDbModel> GetShopItems();
         Task UpdateShopItemAsync(ShopItemDbModel model);
         ShopItemDbModel GetShopItemById(Guid id);
+        IEnumerable<ShopItemDbModel> GetShopItemsByCategoryId(Guid id);
     }
 }

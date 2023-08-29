@@ -51,6 +51,18 @@ namespace OnlineShop.Helpers
             return output;
         }
 
+        public IEnumerable<ShopItemModel> GetShopItemsByCategoryId(Guid id)
+        {
+            var dbData = _shopItemData.GetShopItemsByCategoryId(id);
+            var output = _mapper.Map<IEnumerable<ShopItemModel>>(dbData);
+            foreach (var item in output)
+            {
+                var ct = _mapper.Map<CategoryModel>(_categoryData.GetCategory(item.CategoryId));
+                item.Category = ct;
+            }
+            return output;
+        }
+
         public async Task CreateShopItem(ShopItemModel model)
         {
             var mapped = _mapper.Map<ShopItemDbModel>(model);

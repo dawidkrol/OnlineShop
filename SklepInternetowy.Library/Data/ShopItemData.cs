@@ -34,6 +34,11 @@ namespace OnlineShop.Library.Data
 
             return data;
         }
+        public IEnumerable<ShopItemDbModel> GetShopItemsByCategoryId(Guid id)
+        {
+            return _shopContext.Categories.Single(x => x.Id == id)
+                .ShopItems;
+        }
         public IEnumerable<ShopItemDbModel> GetShopItemByCategory(CategoryDbModel category)
         {
             return _shopContext.ShopItems
