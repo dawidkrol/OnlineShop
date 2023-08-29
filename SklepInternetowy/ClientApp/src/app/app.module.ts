@@ -15,7 +15,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonModule } from '@angular/material/button';
 import { register } from 'swiper/element/bundle';
-import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -77,7 +76,6 @@ const storage = getStorage(app);
     HttpClientModule,
     FormsModule,
     ShopitemsViewOneComponent,
-    SlickCarouselModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
