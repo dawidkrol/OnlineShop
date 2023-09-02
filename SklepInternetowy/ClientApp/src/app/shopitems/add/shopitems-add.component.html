@@ -18,7 +18,6 @@
   <input type="number" id="form1" class="form-control form-icon-trailing" [(ngModel)]="newItem.quantity" />
 </div>
 
-<br />
 <select class="form-select form-select-lg mb-3" aria-label="Default select example" [(ngModel)]="selectedCategory">
   <option label="--select category --" selected></option>
   <option *ngFor="let category of categories" [value]="category.id">
@@ -30,8 +29,6 @@
   <input type="file" class="form-control" aria-describedby="inputGroupFileAddon04" aria-label="Upload" (change)="onChange($event)">
   <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" (click)="onUpload()">Upload</button>
 </div>
-
-<br />
 
 <div class="card-group row-cols-1 row-cols-md-4">
   <div class="card" *ngFor="let img of imageModels">
