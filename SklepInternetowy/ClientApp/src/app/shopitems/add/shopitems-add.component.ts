@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ShopItemsModel } from '../../classes/ShopItemsModel'
 import { CategoryModel } from '../../classes/CategoryModel'
@@ -25,7 +25,7 @@ export class ShopitemsAddComponent  {
   file: File = {} as File;
   imageModels: ImageModel[] = [];
 
-  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, private fileUploadService: FileUploadService) {
+  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, private fileUploadService: FileUploadService, private router: Router) {
 
     http.get<CategoryModel[]>(baseUrl + 'categories').subscribe(result => {
       this.categories = result;
@@ -90,5 +90,7 @@ export class ShopitemsAddComponent  {
       err => console.log('HTTP Error', err),
       () => console.log('HTTP request completed.')
     );
+
+    this.router.navigate(['']);
   }
 }

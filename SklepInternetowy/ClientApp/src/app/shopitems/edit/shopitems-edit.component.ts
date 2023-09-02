@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ShopItemsModel } from '../../classes/ShopItemsModel';
 import { ImageModel } from '../../classes/ImageModel';
@@ -28,7 +28,7 @@ export class ShopitemsEditComponent {
   file: File = {} as File;
   imageModels: ImageModel[] = [];
 
-  constructor(private route: ActivatedRoute, private http: HttpClient, @Inject('BASE_URL') private baseUrl: string)
+  constructor(private route: ActivatedRoute, private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, private router: Router)
   {
     this.route
       .queryParams
@@ -56,6 +56,8 @@ export class ShopitemsEditComponent {
     this.http.put(this.baseUrl + 'shopitems', body, { headers: headers }).subscribe(
       () => console.log('HTTP request completed.')
     );
+
+    this.router.navigate(['']);
   }
 
   onChange(event: any) {
@@ -98,5 +100,6 @@ export class ShopitemsEditComponent {
         });
       }
     );
+    this.router.navigate(['']);
   }
 }
