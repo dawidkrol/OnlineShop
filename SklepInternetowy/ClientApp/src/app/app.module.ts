@@ -27,6 +27,7 @@ import { ShopitemsViewOneComponent } from './shopitems/viewOne/shopitems-viewone
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getStorage } from "firebase/storage";
+import { ContactComponent } from './contact/contact.component';
 
 
 register();
@@ -56,6 +57,7 @@ const storage = getStorage(app);
     ShopitemsEditComponent,
     ShopitemsDeleteComponent,
     ShopitemsAddComponent,
+    ContactComponent,
     //ShopitemsViewOneComponent
   ],
   imports: [
@@ -81,6 +83,7 @@ const storage = getStorage(app);
       { path: 'shopitems-add', component: ShopitemsAddComponent },
       { path: 'shopitems-delete', component: ShopitemsDeleteComponent },
       { path: 'shopitems-viewone', component: ShopitemsViewOneComponent, pathMatch: 'full' },
+      { path: 'contact', component: ContactComponent, pathMatch: 'full' },
     ]),
   ],
   providers: [],
