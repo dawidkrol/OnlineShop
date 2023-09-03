@@ -32,6 +32,7 @@
 
 <div class="card-group row-cols-1 row-cols-md-4">
   <div class="card" *ngFor="let img of imageModels">
+    <button class="btn btn-outline-danger" (click)="onDeleteImg(img.imageUri)">X</button>
     <img src="{{img.imageUri}}" class="card-img-top">
   </div>
 </div>

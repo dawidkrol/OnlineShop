@@ -11,7 +11,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { FileUploadService } from '../../services/file-upload.service';
-import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { getStorage, ref, uploadBytesResumable, getDownloadURL, deleteObject } from "firebase/storage";
 
 @Component({
   selector: 'app-shopitems-edit',
@@ -26,7 +26,6 @@ export class ShopitemsEditComponent {
   public categories: CategoryModel[] = [];
   loading: boolean = false;
   file: File = {} as File;
-  imageModels: ImageModel[] = [];
 
   constructor(private route: ActivatedRoute, private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, private router: Router)
   {
@@ -51,8 +50,6 @@ export class ShopitemsEditComponent {
     var headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const body = JSON.stringify(this.item);
     console.log(body);
-    console.log(headers);
-    console.log(this.baseUrl + 'shopitems');
     this.http.put(this.baseUrl + 'shopitems', body, { headers: headers }).subscribe(
       () => console.log('HTTP request completed.')
     );
@@ -94,12 +91,20 @@ export class ShopitemsEditComponent {
           this.loading = false;
           var img = {} as ImageModel;
           img.imageUri = downloadURL;
-          this.imageModels.push(img);
           this.item.images.push(img);
           console.log('File available at', downloadURL);
         });
       }
     );
-    this.router.navigate(['']);
+  }
+
+  onDeleteImg(url: string | undefined) {
+    const storage = getStorage();
+    const rr = ref(storage, url);
+    deleteObject(rr);
+
+    this.item.images = this.item.images.filter(x => x.imageUri !== url);
+
+    console.log(this.item.images);
   }
 }

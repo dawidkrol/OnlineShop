@@ -11,7 +11,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { FileUploadService } from '../../services/file-upload.service';
-import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { getStorage, ref, uploadBytesResumable, getDownloadURL, deleteObject } from "firebase/storage";
 
 @Component({
   selector: 'app-shopitems-add',
@@ -93,4 +93,15 @@ export class ShopitemsAddComponent  {
 
     this.router.navigate(['']);
   }
+
+  onDeleteImg(url: string | undefined) {
+    const storage = getStorage();
+    const rr = ref(storage, url);
+    deleteObject(rr);
+
+    this.imageModels = this.imageModels.filter(x => x.imageUri !== url);
+
+    console.log(this.imageModels);
+  }
+
 }

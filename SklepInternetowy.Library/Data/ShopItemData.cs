@@ -79,7 +79,8 @@ namespace OnlineShop.Library.Data
                 throw new ArgumentNullException(nameof(model));
             }
 
-            var item = _shopContext.ShopItems.Single(x => x.Id == model.Id);
+            var item = _shopContext.ShopItems
+                .Include(x => x.Images).Single(x => x.Id == model.Id);
 
             item.OwnerId = model.OwnerId;
             item.CategoryId = model.CategoryId;
