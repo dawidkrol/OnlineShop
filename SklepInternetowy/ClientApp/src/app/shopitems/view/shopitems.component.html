@@ -1,4 +1,14 @@
-<button class="btn btn-outline-primary" (click)="goToAdd()">Add new item</button>
+<div>
+  <button class="btn btn-outline-primary" (click)="goToAdd()">Add new item</button>
+</div>
+<div class="container p-3">
+  <select class="select" data-mdb-placeholder="Example placeholder" [(ngModel)]="filterCategoryId">
+    <option value=""> --- </option>
+    <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
+  </select>
+  <button type="button" class="btn btn-outline-warning" (click)="filter()">Filter</button>
+</div>
+
 <div class="album py-5 bg-body-tertiary">
   <div class="container">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -33,6 +43,6 @@
           </div>
         </div>
       </div>
-      </div>
     </div>
   </div>
+</div>
