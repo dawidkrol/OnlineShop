@@ -1,0 +1,43 @@
+<!--<div class="container" *ngFor="let article of articles">
+  <input type="text" [(ngModel)]="article.title" />
+  <input type="text" [(ngModel)]="article.description" />
+  <input type="text" [(ngModel)]="article.imageUrl" />
+  <button class="btn btn-outline-warning" (click)="update(article)">Update</button>
+  <button class="btn btn-outline-danger" (click)="delete(article.id)">Delete</button>
+</div>
+<div>
+  <input type="text" [(ngModel)]="newArticle.title" />
+  <input type="text" [(ngModel)]="newArticle.description" />
+  <input type="text" [(ngModel)]="newArticle.imageUrl" />
+  <button class="btn btn-outline-success" (click)="add()">+</button>
+</div>-->
+
+<div class="container marketing">
+  <!-- Edit/Delete section -->
+  <ng-container *ngFor="let article of articles; index as i">
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading fw-normal lh-1"><input class="text-body-secondary" type="text" [(ngModel)]="article.title" /></h2>
+        <textarea type="text" [(ngModel)]="article.description"></textarea>
+      </div>
+      <div class="col-md-5">
+        <input type="text" [(ngModel)]="article.imageUrl" />
+      </div>
+      <button class="btn btn-outline-warning" (click)="update(article)">Update</button>
+      <button class="btn btn-outline-danger" (click)="delete(article.id)">Delete</button>
+    </div>
+    <hr class="featurette-divider">
+  </ng-container>
+
+  <!-- Adding section -->
+  <div class="row featurette">
+    <div class="col-md-7">
+      <h2 class="featurette-heading fw-normal lh-1"><input class="text-body-secondary" type="text" [(ngModel)]="newArticle.title" /></h2>
+      <textarea type="text" [(ngModel)]="newArticle.description"></textarea>
+    </div>
+    <div class="col-md-5">
+      <input type="text" [(ngModel)]="newArticle.imageUrl" />
+    </div>
+  </div>
+  <button class="btn btn-outline-success" (click)="add()">+</button>
+</div>
