@@ -28,6 +28,9 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getStorage } from "firebase/storage";
 import { ContactComponent } from './contact/contact.component';
+import { MainpageManagementComponent } from './mainpage.management/mainpage.management.component';
+import { CategoryManagementComponent } from './category.management/category.management.component';
+import { ContactinfoManagementComponent } from './contactinfo.management/contactinfo.management.component';
 
 
 register();
@@ -58,6 +61,9 @@ const storage = getStorage(app);
     ShopitemsDeleteComponent,
     ShopitemsAddComponent,
     ContactComponent,
+    MainpageManagementComponent,
+    CategoryManagementComponent,
+    ContactinfoManagementComponent,
     //ShopitemsViewOneComponent
   ],
   imports: [
@@ -84,6 +90,9 @@ const storage = getStorage(app);
       { path: 'shopitems-delete', component: ShopitemsDeleteComponent },
       { path: 'shopitems-viewone', component: ShopitemsViewOneComponent, pathMatch: 'full' },
       { path: 'contact', component: ContactComponent, pathMatch: 'full' },
+      { path: 'mainpage-management', component: MainpageManagementComponent },
+      { path: 'category-management', component: CategoryManagementComponent },
+      { path: 'contactinfo-management', component: ContactinfoManagementComponent },
     ]),
   ],
   providers: [],

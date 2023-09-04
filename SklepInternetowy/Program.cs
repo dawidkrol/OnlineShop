@@ -1,3 +1,5 @@
+using Google;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using OnlineShop.Helpers;
 using OnlineShop.Library.Data;
@@ -107,6 +109,17 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseHsts();
+}
+
+using (var serviceScope = app.Services.GetService<IServiceScopeFactory>().CreateScope())
+{
+    var context = serviceScope.ServiceProvider.GetRequiredService<ShopContext>();
+    context.Database.EnsureCreated();
+
+    if (!(context.Contacts.Count() <= 0))
+    {
+        context.Contacts.Add(new ContactDbModel());
+    }
 }
 
 app.UseHttpsRedirection();
