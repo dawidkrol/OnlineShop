@@ -23,5 +23,22 @@ namespace OnlineShop.Controllers
         {
             return _categoryHelper.GetCategories();
         }
+        [HttpPost]
+        public void CreateCategory(CategoryModel model)
+        {
+            _categoryHelper.AddCategory(model);
+        }
+
+        [HttpPut]
+        public void UpdateCategory(CategoryModel model)
+        {
+            _categoryHelper.EditCategory(model);
+        }
+
+        [HttpDelete]
+        public void DeleteCategory(Guid id)
+        {
+            _categoryHelper.RemoveCategory(id);
+        }
     }
 }
