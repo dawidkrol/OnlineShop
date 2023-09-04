@@ -12,6 +12,7 @@ namespace OnlineShop.Library.Database
         public DbSet<ShopItemDbModel> ShopItems { get; set; }
         public DbSet<ImageDbModel> Images { get; set; }
         public DbSet<ArticleDbModel> Articles { get; set; }
+        public DbSet<ContactDbModel> Contacts { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ShopItemDbModel>(entity =>
@@ -36,6 +37,10 @@ namespace OnlineShop.Library.Database
                 entity.HasKey(x => x.Id);
             });
             modelBuilder.Entity<ArticleDbModel>(entity =>
+            {
+                entity.HasKey(x => x.Id);
+            });
+            modelBuilder.Entity<ContactDbModel>(entity =>
             {
                 entity.HasKey(x => x.Id);
             });

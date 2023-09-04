@@ -4,6 +4,7 @@ using OnlineShop.Library.Data;
 using OnlineShop.Library.Database;
 using OnlineShop.Library.Models;
 using OnlineShop.Model;
+using OnlineShop.Models;
 using SklepInternetowy.Library.Models;
 
 IConfiguration configuration = new ConfigurationBuilder()
@@ -49,6 +50,9 @@ builder.Services.AddAutoMapper(config =>
 
     config.CreateMap<ArticleDbModel, ArticleModel>();
     config.CreateMap<ArticleModel, ArticleDbModel>();
+
+    config.CreateMap<ContactDbModel, ContactModel>();
+    config.CreateMap<ContactModel, ContactDbModel>();
 });
 
 builder.Services.AddControllersWithViews();
@@ -88,12 +92,14 @@ builder.Services.AddTransient<IShopItemData, ShopItemData>();
 builder.Services.AddTransient<ICategoryData, CategoryData>();
 builder.Services.AddTransient<IImageData, ImageData>();
 builder.Services.AddTransient<IArticlesData, ArticlesData>();
+builder.Services.AddTransient<IContactData, ContactData>();
 
 
 //Helpers
 builder.Services.AddTransient<IShopItemHelper, ShopItemHelper>();
 builder.Services.AddTransient<ICategoryHelper, CategoryHelper>();
 builder.Services.AddTransient<IArticlesHelper, ArticlesHelper>();
+builder.Services.AddTransient<IContactHelper, ContactHelper>();
 
 var app = builder.Build();
 
