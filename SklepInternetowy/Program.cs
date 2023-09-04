@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using OnlineShop.Helpers;
 using OnlineShop.Library.Data;
 using OnlineShop.Library.Database;
+using OnlineShop.Library.Models;
 using OnlineShop.Model;
 using SklepInternetowy.Library.Models;
 
@@ -45,6 +46,9 @@ builder.Services.AddAutoMapper(config =>
 
     config.CreateMap<ShopItemDbModel, ShopItemModel>();
     config.CreateMap<ShopItemModel, ShopItemDbModel>();
+
+    config.CreateMap<ArticleDbModel, ArticleModel>();
+    config.CreateMap<ArticleModel, ArticleDbModel>();
 });
 
 builder.Services.AddControllersWithViews();
@@ -83,11 +87,13 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<IShopItemData, ShopItemData>();
 builder.Services.AddTransient<ICategoryData, CategoryData>();
 builder.Services.AddTransient<IImageData, ImageData>();
+builder.Services.AddTransient<IArticlesData, ArticlesData>();
 
 
 //Helpers
 builder.Services.AddTransient<IShopItemHelper, ShopItemHelper>();
 builder.Services.AddTransient<ICategoryHelper, CategoryHelper>();
+builder.Services.AddTransient<IArticlesHelper, ArticlesHelper>();
 
 var app = builder.Build();
 

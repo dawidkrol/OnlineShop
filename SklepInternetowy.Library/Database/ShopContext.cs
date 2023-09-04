@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using OnlineShop.Library.Models;
 using SklepInternetowy.Library.Models;
 
 namespace OnlineShop.Library.Database
@@ -10,6 +11,7 @@ namespace OnlineShop.Library.Database
         public DbSet<CategoryDbModel> Categories { get; set; }
         public DbSet<ShopItemDbModel> ShopItems { get; set; }
         public DbSet<ImageDbModel> Images { get; set; }
+        public DbSet<ArticleDbModel> Articles { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ShopItemDbModel>(entity =>
@@ -30,6 +32,10 @@ namespace OnlineShop.Library.Database
             });
 
             modelBuilder.Entity<ImageDbModel>(entity =>
+            {
+                entity.HasKey(x => x.Id);
+            });
+            modelBuilder.Entity<ArticleDbModel>(entity =>
             {
                 entity.HasKey(x => x.Id);
             });
