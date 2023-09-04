@@ -28,6 +28,7 @@ namespace OnlineShop.Library.Data
             data.Email = model.Email;
             data.Address = model.Address;
             data.PostalData = model.PostalData;
+            data.PhoneNumber = model.PhoneNumber;
             await _shopContext.SaveChangesAsync();
         }
     }

@@ -7,7 +7,9 @@ const PROXY_CONFIG = [
   {
     context: [
       "/shopitems",
-      "/categories"
+      "/categories",
+      "/contact",
+      "/articles"
    ],
     target: target,
     secure: false,

@@ -4,7 +4,7 @@ using OnlineShop.Model;
 
 namespace OnlineShop.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class ArticlesController : ControllerBase
     {

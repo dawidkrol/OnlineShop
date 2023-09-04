@@ -116,9 +116,16 @@ using (var serviceScope = app.Services.GetService<IServiceScopeFactory>().Create
     var context = serviceScope.ServiceProvider.GetRequiredService<ShopContext>();
     context.Database.EnsureCreated();
 
-    if (!(context.Contacts.Count() <= 0))
+    if (context.Contacts.Count() <= 0)
     {
-        context.Contacts.Add(new ContactDbModel());
+        context.Contacts.Add(new ContactDbModel()
+        {
+            Address = "",
+            Email = "",
+            OwnerName = "",
+            PostalData = ""
+        });
+        context.SaveChanges();
     }
 }
 

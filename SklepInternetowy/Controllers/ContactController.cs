@@ -4,7 +4,7 @@ using OnlineShop.Models;
 
 namespace OnlineShop.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class ContactController : ControllerBase
     {

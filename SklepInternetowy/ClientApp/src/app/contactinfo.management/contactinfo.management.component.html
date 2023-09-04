@@ -1,1 +1,26 @@
-<p>contactinfo.management works!</p>
+<div>
+  <div>
+
+    <label>Email: </label>
+    <input type="text" [(ngModel)]="contactinfo.email" />
+    <br />
+
+    <label>Owner: </label>
+    <input type="text" [(ngModel)]="contactinfo.ownerName" />
+    <br />
+
+    <label>Address: </label>
+    <input type="text" [(ngModel)]="contactinfo.address" />
+    <br />
+
+    <label>Postal address: </label>
+    <input type="text" [(ngModel)]="contactinfo.postalData" />
+    <br />
+
+    <label>Phone number: </label>
+    <input type="text" [(ngModel)]="contactinfo.phoneNumber" />
+    <br />
+
+    <button class="btn btn-outline-warning" (click)="update()">Update</button>
+  </div>
+</div>
