@@ -52,6 +52,10 @@ namespace OnlineShop.Library.Data
         }
         public async Task DeleteCategoryAsync(Guid categoryId)
         {
+            if(_shopContext.ShopItems.Where(x => !x.IsDeleted).Any(x => x.CategoryId == categoryId))
+            {
+                throw new InvalidDataException("Cannot delete because of existing shopitems data.");
+            }
             var item = _shopContext.Categories.Single(x => x.Id == categoryId);
             item.IsDeleted = true;
 

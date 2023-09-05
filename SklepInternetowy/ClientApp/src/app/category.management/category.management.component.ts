@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CategoryModel } from '../classes/CategoryModel';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-category.management',
@@ -26,10 +27,12 @@ export class CategoryManagementComponent implements OnInit {
     let options = { params: httpParams };
 
     this.http.delete(this.baseUrl + 'categories', options).subscribe(
-      res => console.log('HTTP response', res),
-      err => console.log('HTTP Error', err),
+      res => {
+      },
+      err => {
+        Swal.fire("ERROR", "This category cannot be deleted due to existing products assigned to it.", "error");
+      },
       () => {
-        console.log('HTTP request completed.');
         this.loadCategories();
       });
 

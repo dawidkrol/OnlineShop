@@ -36,9 +36,17 @@ namespace OnlineShop.Controllers
         }
 
         [HttpDelete]
-        public void DeleteCategory(Guid id)
+        public async Task<IActionResult> DeleteCategory(Guid id)
         {
-            _categoryHelper.RemoveCategory(id);
+            try
+            {
+                await _categoryHelper.RemoveCategory(id);
+                return Ok();
+            }
+            catch (InvalidDataException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

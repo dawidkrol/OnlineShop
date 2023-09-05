@@ -26,7 +26,7 @@ export class MainpageManagementComponent implements OnInit {
   }
 
   delete(id: any) {
-    let httpParams = new HttpParams().set('id', id);
+    let httpParams = new HttpParams().set('id', id).set('observe', 'response');
 
     let options = { params: httpParams };
 
