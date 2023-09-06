@@ -28,6 +28,13 @@ export class MainpageManagementComponent implements OnInit {
   }
 
   delete(id: any) {
+    try {
+      this.onDeleteImg(id);
+    }
+    catch {
+      console.log('Deleting img error');
+    }
+
     let httpParams = new HttpParams().set('id', id).set('observe', 'response');
 
     let options = { params: httpParams };
@@ -39,7 +46,6 @@ export class MainpageManagementComponent implements OnInit {
         console.log('HTTP request completed.');
         this.loadArticles();
       });
-
   }
 
   update(model: ArticleModel) {
@@ -64,7 +70,6 @@ export class MainpageManagementComponent implements OnInit {
       }
     );
   }
-
 
   onChange(event: any) {
     this.file = event.target.files[0];
@@ -97,19 +102,30 @@ export class MainpageManagementComponent implements OnInit {
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           var art = this.articles.find(x => x.id == articeId) ?? {} as ArticleModel;
+          if (art.imageUrl != "") {
+            try {
+              this.deleteIMG(art.imageUrl);
+            }
+            catch {
+              console.log('Deleting error');
+            }
+          }
           art.imageUrl = downloadURL;
         });
       }
     );
   }
 
-  onDeleteImg(url: string | undefined, articeId: string) {
+  onDeleteImg(articeId: string) {
+    var art = this.articles.find(x => x.id == articeId) ?? {} as ArticleModel;
+    this.deleteIMG(art.imageUrl);
+    art.imageUrl = "";
+  }
+
+  deleteIMG(url: string) {
     const storage = getStorage();
     const rr = ref(storage, url);
     deleteObject(rr);
-
-    var art = this.articles.find(x => x.id == articeId) ?? {} as ArticleModel;
-    art.imageUrl = "";
   }
 
 
