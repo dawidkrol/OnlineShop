@@ -67,6 +67,7 @@ export class MainpageManagementComponent implements OnInit {
       () => {
         console.log('HTTP request completed.');
         this.loadArticles()
+        this.newArticle = {} as ArticleModel;
       }
     );
   }
@@ -117,9 +118,16 @@ export class MainpageManagementComponent implements OnInit {
   }
 
   onDeleteImg(articeId: string) {
-    var art = this.articles.find(x => x.id == articeId) ?? {} as ArticleModel;
-    this.deleteIMG(art.imageUrl);
-    art.imageUrl = "";
+    if (articeId == '') {
+      var art = this.newArticle;
+      this.deleteIMG(art.imageUrl);
+      art.imageUrl = "";
+    }
+    else {
+      var art = this.articles.find(x => x.id == articeId) ?? {} as ArticleModel;
+      this.deleteIMG(art.imageUrl);
+      art.imageUrl = "";
+    }
   }
 
   deleteIMG(url: string) {
@@ -128,5 +136,42 @@ export class MainpageManagementComponent implements OnInit {
     deleteObject(rr);
   }
 
+  onUploadPicturetoNewArticle() {
+    const storage = getStorage();
+    const storageRef = ref(storage, 'mainPage/' + this.file.name);
 
+    const uploadTask = uploadBytesResumable(storageRef, this.file);
+
+    uploadTask.on('state_changed',
+      (snapshot) => {
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log('Upload is ' + progress + '% done');
+        switch (snapshot.state) {
+          case 'paused':
+            console.log('Upload is paused');
+            break;
+          case 'running':
+            console.log('Upload is running');
+            break;
+        }
+      },
+      (error) => {
+        // Handle unsuccessful uploads
+      },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          var art = this.newArticle;
+          if (art.imageUrl != "") {
+            try {
+              this.deleteIMG(art.imageUrl);
+            }
+            catch {
+              console.log('Deleting error');
+            }
+          }
+          art.imageUrl = downloadURL;
+        });
+      }
+    );
+  }
 }

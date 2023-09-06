@@ -4,13 +4,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ShopItemsModel } from '../../classes/ShopItemsModel';
 import { ImageModel } from '../../classes/ImageModel';
 import { CategoryModel } from '../../classes/CategoryModel';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
-import { NgForOf } from '@angular/common';
-import { MatSelectModule } from '@angular/material/select';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormsModule } from '@angular/forms';
-import { FileUploadService } from '../../services/file-upload.service';
 import { getStorage, ref, uploadBytesResumable, getDownloadURL, deleteObject } from "firebase/storage";
 
 @Component({
