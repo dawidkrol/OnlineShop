@@ -18,10 +18,19 @@
     <div class="row featurette">
       <div class="col-md-7">
         <h2 class="featurette-heading fw-normal lh-1"><input class="text-body-secondary" type="text" [(ngModel)]="article.title" /></h2>
-        <textarea type="text" [(ngModel)]="article.description"></textarea>
+        <textarea class="form-control mb-2 mr-2" type="text" [(ngModel)]="article.description"></textarea>
       </div>
       <div class="col-md-5">
-        <input type="text" [(ngModel)]="article.imageUrl" />
+        <!--<input type="text" [(ngModel)]="article.imageUrl" />-->
+        <div class="input-group">
+          <input type="file" class="form-control" aria-describedby="inputGroupFileAddon04" aria-label="Upload" (change)="onChange($event)">
+          <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" (click)="onUpload(article.id)">Upload</button>
+        </div>
+
+        <div class="card-group">
+            <button class="btn btn-outline-danger" (click)="onDeleteImg(article.imageUrl, article.id)">X</button>
+            <img src="{{article.imageUrl}}" class="card-img-top">
+        </div>
       </div>
       <button class="btn btn-outline-warning" (click)="update(article)">Update</button>
       <button class="btn btn-outline-danger" (click)="delete(article.id)">Delete</button>

@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { ArticleModel } from '../classes/ArticleModel';
+import { getStorage, ref, uploadBytesResumable, getDownloadURL, deleteObject } from "firebase/storage";
 
 @Component({
   selector: 'app-mainpage.management',
@@ -11,6 +12,7 @@ export class MainpageManagementComponent implements OnInit {
 
   public articles: ArticleModel[] = [];
   public newArticle: ArticleModel = {} as ArticleModel;
+  file: File = {} as File;
 
   constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) {
     this.loadArticles();
@@ -61,6 +63,53 @@ export class MainpageManagementComponent implements OnInit {
         this.loadArticles()
       }
     );
+  }
+
+
+  onChange(event: any) {
+    this.file = event.target.files[0];
+  }
+
+  onUpload(articeId: string) {
+    console.log(this.file);
+
+    const storage = getStorage();
+    const storageRef = ref(storage, 'mainPage/' + this.file.name);
+
+    const uploadTask = uploadBytesResumable(storageRef, this.file);
+
+    uploadTask.on('state_changed',
+      (snapshot) => {
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log('Upload is ' + progress + '% done');
+        switch (snapshot.state) {
+          case 'paused':
+            console.log('Upload is paused');
+            break;
+          case 'running':
+            console.log('Upload is running');
+            break;
+        }
+      },
+      (error) => {
+        // Handle unsuccessful uploads
+      },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          var art = this.articles.find(x => x.id == articeId) ?? {} as ArticleModel;
+          art.imageUrl = downloadURL;
+        });
+      }
+    );
+  }
+
+  onDeleteImg(url: string | undefined, articeId: string) {
+    const storage = getStorage();
+    const rr = ref(storage, url);
+    deleteObject(rr);
+
+    var art = this.articles.find(x => x.id == articeId) ?? {} as ArticleModel;
+    art.imageUrl = "";
   }
 
 
