@@ -4,8 +4,9 @@ namespace OnlineShop.Library.Data
 {
     public interface IContactData
     {
-        Task CreateNewContactData(ContactDbModel model);
-        ContactDbModel GetContactInfo();
-        Task UpdateContactData(ContactDbModel model);
+        Task CreateNewContactInfoData(ContactItemTemplateDbModel model);
+        Task DeleteContactInfoData(int id);
+        IEnumerable<ContactItemTemplateDbModel> GetContactInfo();
+        Task UpdateContactData(ContactItemTemplateDbModel model);
     }
 }

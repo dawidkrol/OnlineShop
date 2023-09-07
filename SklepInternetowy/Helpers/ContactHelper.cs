@@ -15,15 +15,25 @@ namespace OnlineShop.Helpers
             _mapper = mapper;
             _contactData = contactData;
         }
-        public ContactModel GetContactInfo()
+        public IEnumerable<ContactItemTemplateModel> GetContactInfo()
         {
-            return _mapper.Map<ContactModel>(_contactData.GetContactInfo());
+            return _mapper.Map<IEnumerable<ContactItemTemplateModel>>(_contactData.GetContactInfo());
         }
 
-        public async Task EditContactInfo(ContactModel category)
+        public async Task AddContactInfo(ContactItemTemplateModel model)
         {
-            var data = _mapper.Map<ContactDbModel>(category);
+            await _contactData.CreateNewContactInfoData(_mapper.Map<ContactItemTemplateDbModel>(model));
+        }
+
+        public async Task EditContactInfo(ContactItemTemplateModel category)
+        {
+            var data = _mapper.Map<ContactItemTemplateDbModel>(category);
             await _contactData.UpdateContactData(data);
+        }
+
+        public async Task DeleteContactInfo(int id)
+        {
+            await _contactData.DeleteContactInfoData(id);
         }
     }
 }

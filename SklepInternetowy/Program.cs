@@ -53,8 +53,8 @@ builder.Services.AddAutoMapper(config =>
     config.CreateMap<ArticleDbModel, ArticleModel>();
     config.CreateMap<ArticleModel, ArticleDbModel>();
 
-    config.CreateMap<ContactDbModel, ContactModel>();
-    config.CreateMap<ContactModel, ContactDbModel>();
+    config.CreateMap<ContactItemTemplateDbModel, ContactItemTemplateModel>();
+    config.CreateMap<ContactItemTemplateModel, ContactItemTemplateDbModel>();
 });
 
 builder.Services.AddControllersWithViews();
@@ -90,11 +90,11 @@ builder.Services.AddControllersWithViews();
 //});
 
 //Data
-builder.Services.AddTransient<IShopItemData, ShopItemData>();
-builder.Services.AddTransient<ICategoryData, CategoryData>();
-builder.Services.AddTransient<IImageData, ImageData>();
-builder.Services.AddTransient<IArticlesData, ArticlesData>();
-builder.Services.AddTransient<IContactData, ContactData>();
+builder.Services.AddScoped<IShopItemData, ShopItemData>();
+builder.Services.AddScoped<ICategoryData, CategoryData>();
+builder.Services.AddScoped<IImageData, ImageData>();
+builder.Services.AddScoped<IArticlesData, ArticlesData>();
+builder.Services.AddScoped<IContactData, ContactData>();
 
 
 //Helpers
@@ -115,18 +115,6 @@ using (var serviceScope = app.Services.GetService<IServiceScopeFactory>().Create
 {
     var context = serviceScope.ServiceProvider.GetRequiredService<ShopContext>();
     context.Database.EnsureCreated();
-
-    if (context.Contacts.Count() <= 0)
-    {
-        context.Contacts.Add(new ContactDbModel()
-        {
-            Address = "",
-            Email = "",
-            OwnerName = "",
-            PostalData = ""
-        });
-        context.SaveChanges();
-    }
 }
 
 app.UseHttpsRedirection();

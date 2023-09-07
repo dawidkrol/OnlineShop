@@ -1,26 +1,16 @@
 <div>
   <div>
-
-    <label>Email: </label>
-    <input type="text" [(ngModel)]="contactinfo.email" />
-    <br />
-
-    <label>Owner: </label>
-    <input type="text" [(ngModel)]="contactinfo.ownerName" />
-    <br />
-
-    <label>Address: </label>
-    <input type="text" [(ngModel)]="contactinfo.address" />
-    <br />
-
-    <label>Postal address: </label>
-    <input type="text" [(ngModel)]="contactinfo.postalData" />
-    <br />
-
-    <label>Phone number: </label>
-    <input type="text" [(ngModel)]="contactinfo.phoneNumber" />
-    <br />
-
-    <button class="btn btn-outline-warning" (click)="update()">Update</button>
+    <div *ngFor="let info of contactinfos">
+      <input type="text" [(ngModel)]="info.title" /> : 
+      <input type="text" [(ngModel)]="info.value" />
+      <button class="btn btn-outline-warning" (click)="update(info)">Update</button>
+      <button class="btn btn-outline-danger" (click)="delete(info.id)">Delete</button>
+      <br />
+    </div>
+    <div>
+      <input type="text" [(ngModel)]="newContactInfo.title" /> : 
+      <input type="text" [(ngModel)]="newContactInfo.value" />
+      <button class="btn btn-outline-secondary" (click)="add()">Add</button>
+    </div>
   </div>
 </div>

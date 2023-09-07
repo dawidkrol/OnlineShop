@@ -2,10 +2,8 @@
   <button class="btn btn-outline-primary" [routerLink]="['/contactinfo-management']">Contact management</button>
 </div>
 <br />
-<label>Email: {{contactinfo.email}}</label><br />
-<label>Owner: {{contactinfo.ownerName}}</label><br />
-<label>Address: {{contactinfo.address}}</label><br />
-<label>Postal address: {{contactinfo.postalData}}</label><br />
-<label>Phone number: {{contactinfo.phoneNumber}}</label>
+<div *ngFor="let info of contactinfos">
+  <label>{{info.title}}: {{info.value}}</label>
+</div>
 
 

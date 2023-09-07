@@ -16,14 +16,24 @@ namespace OnlineShop.Controllers
         }
 
         [HttpGet]
-        public ContactModel GetContactInfo()
+        public IEnumerable<ContactItemTemplateModel> GetContactInfo()
         {
             return _contactHelper.GetContactInfo();
         }
-        [HttpPut]
-        public void EditContactInfo(ContactModel contactModel)
+        [HttpPost]
+        public async Task CreateContactInfo(ContactItemTemplateModel model)
         {
-            _contactHelper.EditContactInfo(contactModel);
+            await _contactHelper.AddContactInfo(model);
+        }
+        [HttpPut]
+        public async Task EditContactInfo(ContactItemTemplateModel contactModel)
+        {
+            await _contactHelper.EditContactInfo(contactModel);
+        }
+        [HttpDelete]
+        public async Task DeleteContactInfo(int id)
+        {
+            await _contactHelper.DeleteContactInfo(id);
         }
     }
 }

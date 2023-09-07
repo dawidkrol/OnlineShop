@@ -4,7 +4,9 @@ namespace OnlineShop.Helpers
 {
     public interface IContactHelper
     {
-        Task EditContactInfo(ContactModel category);
-        ContactModel GetContactInfo();
+        Task AddContactInfo(ContactItemTemplateModel model);
+        Task DeleteContactInfo(int id);
+        Task EditContactInfo(ContactItemTemplateModel category);
+        IEnumerable<ContactItemTemplateModel> GetContactInfo();
     }
 }

@@ -1,5 +1,6 @@
 ﻿using OnlineShop.Library.Database;
 using OnlineShop.Library.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace OnlineShop.Library.Data
 {
@@ -11,24 +12,33 @@ namespace OnlineShop.Library.Data
         {
             _shopContext = shopContext;
         }
-        public ContactDbModel GetContactInfo()
+        public IEnumerable<ContactItemTemplateDbModel> GetContactInfo()
         {
-            return _shopContext.Contacts.FirstOrDefault();
+            return _shopContext.ContactInfo;
         }
-        public async Task CreateNewContactData(ContactDbModel model)
+        public async Task CreateNewContactInfoData(ContactItemTemplateDbModel model)
         {
-            _shopContext.Contacts.Add(model);
+            var data = new ContactItemTemplateDbModel()
+            {
+                Title = model.Title,
+                Value = model.Value,
+            };
+            _shopContext.ContactInfo.Add(data);
             await _shopContext.SaveChangesAsync();
         }
 
-        public async Task UpdateContactData(ContactDbModel model)
+        public async Task UpdateContactData(ContactItemTemplateDbModel model)
         {
-            var data = _shopContext.Contacts.First();
-            data.OwnerName = model.OwnerName;
-            data.Email = model.Email;
-            data.Address = model.Address;
-            data.PostalData = model.PostalData;
-            data.PhoneNumber = model.PhoneNumber;
+            var data = _shopContext.ContactInfo.Single(x => x.Id == model.Id);
+            data.Title = model.Title;
+            data.Value = model.Value;
+            await _shopContext.SaveChangesAsync();
+        }
+
+        public async Task DeleteContactInfoData(int id)
+        {
+            var ent = _shopContext.ContactInfo.Single(x => x.Id == id);
+            _shopContext.ContactInfo.Remove(ent);
             await _shopContext.SaveChangesAsync();
         }
     }
