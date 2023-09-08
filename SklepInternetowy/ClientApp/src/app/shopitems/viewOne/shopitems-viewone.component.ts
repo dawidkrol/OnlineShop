@@ -3,19 +3,18 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ShopItemsModel } from '../../classes/ShopItemsModel'
 import { CommonModule } from '@angular/common';
+import { EmailModel } from '../../classes/EmailModel';
 
 @Component({
   selector: 'app-shopitems-viewone',
-  standalone: true,
-  imports: [CommonModule],
   templateUrl: './shopitems-viewone.component.html',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 
 export class ShopitemsViewOneComponent {
 
   public _id: string | undefined;
   public item: ShopItemsModel = {} as ShopItemsModel;
+  public email: EmailModel = {} as EmailModel;
 
   constructor(private route: ActivatedRoute, private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) {
     this.route
@@ -45,6 +44,24 @@ export class ShopitemsViewOneComponent {
 
   beforeChange(e: any) {
     console.log('beforeChange');
+  }
+
+  sendEmail() {
+    this.email.productUri = this.baseUrl + '/shopitems-viewone?itemsToViewId=' + this.item.id;
+    let headers = new HttpHeaders(
+      {
+        'Content-Type': 'application/json',
+      });
+    const body = JSON.stringify(this.email);
+    console.log(body);
+    this.http.post(this.baseUrl + 'email', body, { headers: headers }).subscribe(
+      res => console.log('HTTP response', res),
+      err => console.log('HTTP Error', err),
+      () => {
+        console.log('HTTP request completed.');
+        this.email = {} as EmailModel;
+      }
+    );
   }
 
 }

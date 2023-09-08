@@ -73,6 +73,7 @@ builder.Services.AddTransient<IShopItemHelper, ShopItemHelper>();
 builder.Services.AddTransient<ICategoryHelper, CategoryHelper>();
 builder.Services.AddTransient<IArticlesHelper, ArticlesHelper>();
 builder.Services.AddTransient<IContactHelper, ContactHelper>();
+builder.Services.AddTransient<IEmailSenderHelper, EmailSenderHelper>();
 
 var app = builder.Build();
 

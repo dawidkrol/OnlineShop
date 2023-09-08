@@ -62,8 +62,8 @@ const storage = getStorage(app);
     ContactinfoManagementComponent,
     SignInComponent,
     SignUpComponent,
-    ForgotPasswordComponent
-    //ShopitemsViewOneComponent
+    ForgotPasswordComponent,
+    ShopitemsViewOneComponent,
   ],
   imports: [
     CommonModule,
@@ -80,7 +80,6 @@ const storage = getStorage(app);
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
-    ShopitemsViewOneComponent,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     RouterModule.forRoot([

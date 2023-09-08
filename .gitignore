@@ -363,3 +363,6 @@ MigrationBackup/
 FodyWeavers.xsd
 /SklepInternetowy/ClientApp/.angular/cache/14.2.12
 /SklepInternetowy/ClientApp/.angular/cache/14.0.3
+/SklepInternetowy/appsettings.json
+/SklepInternetowy/appsettings.Development.json
+/SklepInternetowy/ClientApp/src/environments/environment.ts

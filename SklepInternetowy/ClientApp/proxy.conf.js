@@ -9,7 +9,8 @@ const PROXY_CONFIG = [
       "/shopitems",
       "/categories",
       "/contact",
-      "/articles"
+      "/articles",
+      "/email"
    ],
     target: target,
     secure: false,
