@@ -18,7 +18,11 @@ namespace OnlineShop.Controllers
         [HttpPost]
         public void SendMail(EmailModel model)
         {
-            _helper.SendEmail(model);
+            try
+            {
+                _helper.SendEmail(model);
+            }
+            catch (Exception ex) { }
         }
     }
 }

@@ -4,6 +4,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ShopItemsModel } from '../../classes/ShopItemsModel'
 import { CommonModule } from '@angular/common';
 import { EmailModel } from '../../classes/EmailModel';
+import { FormBuilder } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-shopitems-viewone',
@@ -56,9 +58,12 @@ export class ShopitemsViewOneComponent {
     console.log(body);
     this.http.post(this.baseUrl + 'email', body, { headers: headers }).subscribe(
       res => console.log('HTTP response', res),
-      err => console.log('HTTP Error', err),
+      err => {
+        console.log('HTTP Error', err);
+        Swal.fire("Email", "Failed to send the email, please check if the data is correct.", "error");
+      },
       () => {
-        console.log('HTTP request completed.');
+        Swal.fire("Email", "The email has been successfully sent, you will receive a response shortly.", "success");
         this.email = {} as EmailModel;
       }
     );

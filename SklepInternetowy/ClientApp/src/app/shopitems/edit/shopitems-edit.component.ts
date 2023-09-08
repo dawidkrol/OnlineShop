@@ -48,6 +48,10 @@ export class ShopitemsEditComponent {
         'Accept': 'application/json',
         'Authorization': 'Bearer ' + token
       });
+    console.log(this.selectedCategory);
+    if (this.selectedCategory != "") {
+      this.item.categoryId = this.selectedCategory;
+    }
     const body = JSON.stringify(this.item);
     console.log(body);
     this.http.put(this.baseUrl + 'shopitems', body, { headers: headers }).subscribe(

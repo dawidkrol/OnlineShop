@@ -3,6 +3,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CategoryModel } from '../classes/CategoryModel';
 import Swal from 'sweetalert2';
+import { AuthService } from '../shared/services/auth.service';
 
 @Component({
   selector: 'app-category.management',
@@ -13,7 +14,7 @@ export class CategoryManagementComponent implements OnInit {
 
   public categories: CategoryModel[] = [];
   public newCategory: CategoryModel = {} as CategoryModel;
-  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string)
+  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, public authService: AuthService)
   {
     this.loadCategories();
   }
@@ -22,11 +23,16 @@ export class CategoryManagementComponent implements OnInit {
   }
 
   delete(id: any) {
+    var token = this.authService.getToken;
+    let headers = new HttpHeaders(
+      {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ' + token
+      });
     let httpParams = new HttpParams().set('id', id);
 
-    let options = { params: httpParams };
-
-    this.http.delete(this.baseUrl + 'categories', options).subscribe(
+    this.http.delete(this.baseUrl + 'categories', { params: httpParams, headers: headers }).subscribe(
       res => {
       },
       err => {
@@ -45,7 +51,13 @@ export class CategoryManagementComponent implements OnInit {
   }
 
   edit(cat: CategoryModel) {
-    var headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    var token = this.authService.getToken;
+    let headers = new HttpHeaders(
+      {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ' + token
+      });
     const body = JSON.stringify(cat);
     console.log(body);
     this.http.put(this.baseUrl + 'categories', body, { headers: headers }).subscribe(
@@ -54,7 +66,13 @@ export class CategoryManagementComponent implements OnInit {
   }
 
   add() {
-    var headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    var token = this.authService.getToken;
+    let headers = new HttpHeaders(
+      {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ' + token
+      });
     const body = JSON.stringify(this.newCategory);
     console.log(body);
     this.http.post(this.baseUrl + 'categories', body, { headers: headers }).subscribe(

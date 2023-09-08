@@ -1,56 +1,61 @@
-<div style="display:flex">
-  <div style="width:60%;margin:auto;">
-    <!--<ngx-slick-carousel class="carousel"
-                        [config]="slideConfig"
-                        (init)="slickInit($event)"
-                        (breakpoint)="breakpoint($event)"
-                        (afterChange)="afterChange($event)"
-                        (beforeChange)="beforeChange($event)">
-      <div ngxSlickItem *ngFor="let img of item.images" class="slide">
-        <img src="{{ img.imageUri }}" alt="" width="100%">
-      </div>
-    </ngx-slick-carousel>-->
-    <div id="carouselExample" class="carousel slide">
-      <div class="carousel-inner">
-        <div class="carousel-item active" *ngFor="let img of item.images">
-          <img src="{{img.imageUri}}" class="d-block w-100" alt="...">
+<div class="container text-center">
+  <div class="row">
+    <div class="col-8">
+      <!--<ngx-slick-carousel class="carousel"
+                          [config]="slideConfig"
+                          (init)="slickInit($event)"
+                          (breakpoint)="breakpoint($event)"
+                          (afterChange)="afterChange($event)"
+                          (beforeChange)="beforeChange($event)">
+        <div ngxSlickItem *ngFor="let img of item.images" class="slide">
+          <img src="{{ img.imageUri }}" alt="" width="100%">
         </div>
+      </ngx-slick-carousel>-->
+      <div id="carouselExample" class="carousel slide">
+        <div class="carousel-inner">
+          <div class="carousel-item active" *ngFor="let img of item.images">
+            <img src="{{img.imageUri}}" class="d-block w-100" alt="...">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden"></span>
+        </button>
       </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden"></span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden"></span>
-      </button>
+    </div>
+    <div class="col-4">
+      <div>
+        <h1>{{item.name}}</h1>
+      </div>
+      <div>
+        <label>{{item.description}}</label>
+      </div>
+      <!--<div style="background-color: yellow; margin: auto; text-align:center;">
+        {{item.category.name}}
+      </div>-->
     </div>
   </div>
-  <div style="width: 40%; ">
-    <div style="margin: auto; text-align: center; ">
-      <h1 style="font-size:30px; overflow-wrap:break-word;">{{item.name}}</h1>
+  <div class="row mt-5">
+    <div class="container">
+      <form>
+        <div class="row mb-3 w-50">
+          <input name="title" class="form-control form-control-lg" type="text" placeholder="Title" aria-label=".form-control-lg example" [(ngModel)]="email.title" maxlength="50" required>
+        </div>
+
+        <div class="row mb-3">
+          <textarea name="description" class="form-control" id="exampleFormControlTextarea1" placeholder="Email content" rows="4" [(ngModel)]="email.body" size="30" required></textarea>
+        </div>
+
+        <div class="row mb-3 w-25">
+          <input name="email" type="email" placeholder="Your email" class="form-control form-control-lg" [(ngModel)]="email.sender" required />
+        </div>
+
+        <button type="submit" class="btn btn-outline-primary" (click)="sendEmail()">Send</button>
+      </form>
     </div>
-    <div style="background-color: black; margin: auto; text-align:center;">
-      {{item.description}}
-    </div>
-    <!--<div style="background-color: yellow; margin: auto; text-align:center;">
-      {{item.category.name}}
-    </div>-->
   </div>
-  <!--  -->
-  <div class="mb-3">
-    <label for="exampleFormControlInput1" class="form-label">Title</label>
-    <input class="form-control form-control-lg" type="text" aria-label=".form-control-lg example" [(ngModel)]="email.title" maxlength="50">
-  </div>
-
-  <div class="mb-3">
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="4" [(ngModel)]="email.body" size="30"></textarea>
-  </div>
-
-  <div class="mb-3" style="width: 22rem;">
-    <label for="exampleFormControlTextarea1" class="form-label">Sender email</label>
-    <input type="text" class="form-control form-control-lg" [(ngModel)]="email.sender" />
-  </div>
-
-  <button class="btn btn-outline-primary" (click)="sendEmail()">Send</button>
 </div>
