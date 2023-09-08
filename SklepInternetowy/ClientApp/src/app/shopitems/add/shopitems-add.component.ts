@@ -4,8 +4,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ShopItemsModel } from '../../classes/ShopItemsModel'
 import { CategoryModel } from '../../classes/CategoryModel'
 import { ImageModel } from '../../classes/ImageModel'
-import { FileUploadService } from '../../services/file-upload.service';
 import { getStorage, ref, uploadBytesResumable, getDownloadURL, deleteObject } from "firebase/storage";
+import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
   selector: 'app-shopitems-add',
@@ -19,7 +19,7 @@ export class ShopitemsAddComponent  {
   file: File = {} as File;
   imageModels: ImageModel[] = [];
 
-  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, private fileUploadService: FileUploadService, private router: Router) {
+  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, private router: Router, public authService: AuthService) {
 
     http.get<CategoryModel[]>(baseUrl + 'categories').subscribe(result => {
       this.categories = result;
@@ -74,7 +74,13 @@ export class ShopitemsAddComponent  {
     var categ = this.categories[this.categories.findIndex(x => x.id === this.selectedCategory)];
     this.newItem.categoryId = categ.id;
     this.newItem.images = this.imageModels;
-    var headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    var token = this.authService.getToken;
+    let headers = new HttpHeaders(
+      {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ' + token
+      });
     const body = JSON.stringify(this.newItem);
     console.log(body);
     console.log(headers);

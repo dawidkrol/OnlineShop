@@ -5,6 +5,7 @@ import { ShopItemsModel } from '../../classes/ShopItemsModel';
 import { ImageModel } from '../../classes/ImageModel';
 import { CategoryModel } from '../../classes/CategoryModel';
 import { getStorage, ref, uploadBytesResumable, getDownloadURL, deleteObject } from "firebase/storage";
+import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
   selector: 'app-shopitems-edit',
@@ -20,7 +21,7 @@ export class ShopitemsEditComponent {
   loading: boolean = false;
   file: File = {} as File;
 
-  constructor(private route: ActivatedRoute, private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, private router: Router)
+  constructor(private route: ActivatedRoute, private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, private router: Router, public authService: AuthService)
   {
     this.route
       .queryParams
@@ -40,7 +41,13 @@ export class ShopitemsEditComponent {
   }
 
   onUpdate() {
-    var headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    var token = this.authService.getToken;
+    let headers = new HttpHeaders(
+      {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ' + token
+      });
     const body = JSON.stringify(this.item);
     console.log(body);
     this.http.put(this.baseUrl + 'shopitems', body, { headers: headers }).subscribe(

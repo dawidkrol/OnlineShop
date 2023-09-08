@@ -32,6 +32,12 @@
           <li class="nav-item" [routerLinkActive]="['link-active']">
             <a class="nav-link text-dark" [routerLink]="['/contact']">Contact</a>
           </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="authService.isLoggedIn">
+            <a class="nav-link text-dark" (click)="authService.SignOut()">Logout</a>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="!authService.isLoggedIn">
+            <a class="nav-link text-dark" [routerLink]="['/sign-in']">SignIn</a>
+          </li>
         </ul>
       </div>
     </div>

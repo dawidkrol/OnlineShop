@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { ArticleModel } from '../classes/ArticleModel';
 import { getStorage, ref, uploadBytesResumable, getDownloadURL, deleteObject } from "firebase/storage";
+import { AuthService } from '../shared/services/auth.service';
 
 @Component({
   selector: 'app-mainpage.management',
@@ -14,7 +15,7 @@ export class MainpageManagementComponent implements OnInit {
   public newArticle: ArticleModel = {} as ArticleModel;
   file: File = {} as File;
 
-  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) {
+  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, public authService: AuthService) {
     this.loadArticles();
   }
 
@@ -34,12 +35,17 @@ export class MainpageManagementComponent implements OnInit {
     catch {
       console.log('Deleting img error');
     }
+    var token = this.authService.getToken;
+    let headers = new HttpHeaders(
+        {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': 'Bearer ' + token
+        });
 
     let httpParams = new HttpParams().set('id', id).set('observe', 'response');
 
-    let options = { params: httpParams };
-
-    this.http.delete(this.baseUrl + 'articles', options).subscribe(
+    this.http.delete(this.baseUrl + 'articles', { params: httpParams, headers: headers }).subscribe(
       res => console.log('HTTP response', res),
       err => console.log('HTTP Error', err),
       () => {
@@ -49,7 +55,11 @@ export class MainpageManagementComponent implements OnInit {
   }
 
   update(model: ArticleModel) {
-    var headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    var token = this.authService.getToken;
+    var headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer ' + token });
     const body = JSON.stringify(model);
     console.log(body);
     this.http.put(this.baseUrl + 'articles', body, { headers: headers }).subscribe(
@@ -58,7 +68,13 @@ export class MainpageManagementComponent implements OnInit {
   }
 
   add() {
-    var headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    var token = this.authService.getToken;
+    var headers = new HttpHeaders(
+      {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ' + token
+      });
     const body = JSON.stringify(this.newArticle);
     console.log(body);
     this.http.post(this.baseUrl + 'articles', body, { headers: headers }).subscribe(

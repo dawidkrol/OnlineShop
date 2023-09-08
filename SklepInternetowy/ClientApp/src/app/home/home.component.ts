@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Inject } from '@angular/core';
 import { ArticleModel } from '../classes/ArticleModel';
+import { AuthService } from '../shared/services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +10,7 @@ import { ArticleModel } from '../classes/ArticleModel';
 export class HomeComponent {
   public articles: ArticleModel[] = [];
 
-  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) {
+  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, public authService: AuthService) {
     this.loadArticles();
   }
 

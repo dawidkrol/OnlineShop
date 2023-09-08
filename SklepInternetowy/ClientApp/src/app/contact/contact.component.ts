@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { ContactItemTemplateClass } from '../classes/ContactItemTemplateClass';
+import { AuthService } from '../shared/services/auth.service';
 
 @Component({
   selector: 'app-contact',
@@ -10,7 +11,7 @@ import { ContactItemTemplateClass } from '../classes/ContactItemTemplateClass';
 export class ContactComponent implements OnInit {
   public contactinfos: ContactItemTemplateClass[] = [];
 
-  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string)
+  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, public authService: AuthService)
   {
     this.loadContactInfo();
   }

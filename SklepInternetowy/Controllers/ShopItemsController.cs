@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SklepInternetowy;
 using OnlineShop.Helpers;
 using OnlineShop.Model;
+using Microsoft.AspNetCore.Authorization;
 
 namespace OnlineShop.Controllers
 {
@@ -36,16 +37,19 @@ namespace OnlineShop.Controllers
         {
             return _shopItemHelper.GetShopItemsByCategoryId(id);
         }
+        [Authorize]
         [HttpPost]
         public async Task Post(ShopItemModel model)
         {
             await _shopItemHelper.CreateShopItem(model);
         }
+        [Authorize]
         [HttpDelete]
         public async Task Delete(Guid id)
         {
             await _shopItemHelper.DeleteShopItem(id);
         }
+        [Authorize]
         [HttpPut]
         public async Task Update(ShopItemModel model)
         {

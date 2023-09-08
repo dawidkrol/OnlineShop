@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using OnlineShop.Helpers;
 using OnlineShop.Model;
 
@@ -26,18 +27,21 @@ namespace OnlineShop.Controllers
             return _articlesHelper.GetArticleById(id);
         }
 
+        [Authorize]
         [HttpPost]
         public async Task Post(ArticleModel model)
         {
             await _articlesHelper.CreateArticle(model);
         }
 
+        [Authorize]
         [HttpDelete]
         public async Task Delete(Guid id)
         {
             await _articlesHelper.DeleteArticle(id);
         }
 
+        [Authorize]
         [HttpPut]
         public async Task Update(ArticleModel model)
         {

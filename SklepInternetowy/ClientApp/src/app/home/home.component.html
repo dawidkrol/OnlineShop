@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="authService.isLoggedIn">
   <button class="btn btn-outline-primary" [routerLink]="['/mainpage-management']">Main page management</button>
 </div>
 <div class="container marketing">

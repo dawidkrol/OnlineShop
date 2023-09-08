@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using OnlineShop.Helpers;
 using OnlineShop.Models;
 
@@ -20,16 +21,19 @@ namespace OnlineShop.Controllers
         {
             return _contactHelper.GetContactInfo();
         }
+        [Authorize]
         [HttpPost]
         public async Task CreateContactInfo(ContactItemTemplateModel model)
         {
             await _contactHelper.AddContactInfo(model);
         }
+        [Authorize]
         [HttpPut]
         public async Task EditContactInfo(ContactItemTemplateModel contactModel)
         {
             await _contactHelper.EditContactInfo(contactModel);
         }
+        [Authorize]
         [HttpDelete]
         public async Task DeleteContactInfo(int id)
         {

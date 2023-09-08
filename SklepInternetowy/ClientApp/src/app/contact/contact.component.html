@@ -1,9 +1,7 @@
-<div>
+<div  *ngIf="authService.isLoggedIn">
   <button class="btn btn-outline-primary" [routerLink]="['/contactinfo-management']">Contact management</button>
 </div>
 <br />
 <div *ngFor="let info of contactinfos">
   <label>{{info.title}}: {{info.value}}</label>
 </div>
-
-

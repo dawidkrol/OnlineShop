@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ShopItemsModel } from '../../classes/ShopItemsModel'
 import { Router } from '@angular/router';
 import { CategoryModel } from '../../classes/CategoryModel';
+import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
   selector: 'app-shopitems',
@@ -14,7 +15,7 @@ export class ShopitemsComponent {
   _router: Router = {} as Router;
   public filterCategoryId: string = "";
 
-  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, router: Router) {
+  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, router: Router, public authService: AuthService) {
 
     this._router = router;
 

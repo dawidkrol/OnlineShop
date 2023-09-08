@@ -1,7 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { ShopItemsModel } from '../../classes/ShopItemsModel'
+import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
   selector: 'app-shopitems-delete',
@@ -11,7 +12,7 @@ export class ShopitemsDeleteComponent {
   public _id: string = '';
   public shopItem: ShopItemsModel = {} as ShopItemsModel;
 
-  constructor(private route: ActivatedRoute, private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, private router: Router) {
+  constructor(private route: ActivatedRoute, private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, private router: Router, public authService: AuthService) {
     this.route
       .queryParams
       .subscribe(params => {
@@ -26,10 +27,15 @@ export class ShopitemsDeleteComponent {
   onDelete() {
 
     let httpParams = new HttpParams().set('id', this._id);
+    var token = this.authService.getToken;
+    let headers = new HttpHeaders(
+      {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ' + token
+      });
 
-    let options = { params: httpParams };
-
-    this.http.delete(this.baseUrl + 'shopitems', options).subscribe(
+    this.http.delete(this.baseUrl + 'shopitems', { params: httpParams, headers: headers }).subscribe(
       res => console.log('HTTP response', res),
       err => console.log('HTTP Error', err),
       () => console.log('HTTP request completed.'));

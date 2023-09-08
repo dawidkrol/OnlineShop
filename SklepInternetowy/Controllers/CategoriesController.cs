@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OnlineShop.Helpers;
 using OnlineShop.Model;
@@ -23,18 +24,19 @@ namespace OnlineShop.Controllers
         {
             return _categoryHelper.GetCategories();
         }
+        [Authorize]
         [HttpPost]
         public void CreateCategory(CategoryModel model)
         {
             _categoryHelper.AddCategory(model);
         }
-
+        [Authorize]
         [HttpPut]
         public void UpdateCategory(CategoryModel model)
         {
             _categoryHelper.EditCategory(model);
         }
-
+        [Authorize]
         [HttpDelete]
         public async Task<IActionResult> DeleteCategory(Guid id)
         {
