@@ -1,16 +1,16 @@
 <div>
   <div>
-    <div *ngFor="let info of contactinfos">
+    <div *ngFor="let info of service.contactinfos">
       <input type="text" [(ngModel)]="info.title" /> : 
       <input type="text" [(ngModel)]="info.value" />
-      <button class="btn btn-outline-warning" (click)="update(info)">Update</button>
-      <button class="btn btn-outline-danger" (click)="delete(info.id)">Delete</button>
+      <button class="btn btn-outline-warning" (click)="service.update(info)">Update</button>
+      <button class="btn btn-outline-danger" (click)="service.delete(info.id)">Delete</button>
       <br />
     </div>
     <div>
-      <input type="text" [(ngModel)]="newContactInfo.title" /> : 
-      <input type="text" [(ngModel)]="newContactInfo.value" />
-      <button class="btn btn-outline-success" (click)="add()">Add</button>
+      <input type="text" [(ngModel)]="service.newContactInfo.title" /> : 
+      <input type="text" [(ngModel)]="service.newContactInfo.value" />
+      <button class="btn btn-outline-success" (click)="service.add()">Add</button>
     </div>
   </div>
 </div>

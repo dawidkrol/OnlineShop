@@ -1,11 +1,11 @@
 <div>
-  <div *ngFor="let category of categories">
+  <div *ngFor="let category of categoryService.categories">
     <input type="text" [(ngModel)]="category.name" />
-    <button class="btn btn-outline-warning" (click)="edit(category)">Update</button>
-    <button class="btn btn-outline-danger" (click)="delete(category.id)">Delete</button>
+    <button class="btn btn-outline-warning" (click)="categoryService.edit(category)">Update</button>
+    <button class="btn btn-outline-danger" (click)="categoryService.delete(category.id)">Delete</button>
   </div>
   <div>
-    <input type="text" [(ngModel)]="newCategory.name" />
-    <button class="btn btn-outline-success" (click)="add()">+</button>
+    <input type="text" [(ngModel)]="categoryService.newCategory.name" />
+    <button class="btn btn-outline-success" (click)="categoryService.add()">+</button>
   </div>
 </div>
