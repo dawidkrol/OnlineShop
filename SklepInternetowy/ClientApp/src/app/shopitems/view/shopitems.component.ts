@@ -48,7 +48,7 @@ export class ShopitemsComponent {
       this.http.get<ShopItemsModel[]>(this.baseUrl + 'shopitems').subscribe(result => {
         this.shopitems = result;
         if (this.filterCategoryId != "") {
-          this.shopitems = this.shopitems.filter(x => x.category.id == this.filterCategoryId);
+          this.shopitems = this.shopitems.filter(x => x.category.map(x => x.id).includes(this.filterCategoryId));
         }
       }, error => console.error(error));
   }

@@ -4,8 +4,8 @@ import { ImageModel } from './ImageModel';
 export interface ShopItemsModel {
   id: string;
   name: string;
-  categoryId: string;
-  category: CategoryModel;
+  categoryIds: string[];
+  category: CategoryModel[];
   description: string;
   price: number;
   quantity: number;

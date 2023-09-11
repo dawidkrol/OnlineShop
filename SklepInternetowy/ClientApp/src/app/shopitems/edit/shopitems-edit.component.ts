@@ -16,13 +16,14 @@ export class ShopitemsEditComponent {
   public _id: string | undefined;
   public item: ShopItemsModel = {} as ShopItemsModel;
 
-  public selectedCategory: string = "";
+  public selectedCategories: string[] = [];
   public categories: CategoryModel[] = [];
   loading: boolean = false;
   file: File = {} as File;
 
   constructor(private route: ActivatedRoute, private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, private router: Router, public authService: AuthService)
   {
+
     this.route
       .queryParams
       .subscribe(params => {
@@ -31,6 +32,7 @@ export class ShopitemsEditComponent {
 
     this.http.get<ShopItemsModel>(baseUrl + 'shopitems/getById/' + this._id).subscribe(result => {
       this.item = result;
+      this.item.category.forEach(x => this.selectedCategories.push(x.id));
     }, error => console.error(error));
 
 
@@ -48,10 +50,7 @@ export class ShopitemsEditComponent {
         'Accept': 'application/json',
         'Authorization': 'Bearer ' + token
       });
-    console.log(this.selectedCategory);
-    if (this.selectedCategory != "") {
-      this.item.categoryId = this.selectedCategory;
-    }
+    this.item.categoryIds = this.selectedCategories;
     const body = JSON.stringify(this.item);
     console.log(body);
     this.http.put(this.baseUrl + 'shopitems', body, { headers: headers }).subscribe(
@@ -110,5 +109,27 @@ export class ShopitemsEditComponent {
     this.item.images = this.item.images.filter(x => x.imageUri !== url);
 
     console.log(this.item.images);
+  }
+
+  pushCheckBoxValue(event: any, value: any) {
+    if (event.target.checked) {
+      if (this.selectedCategories.every(x => x != value)) {
+        this.selectedCategories.push(value)
+      }
+    } else {
+      this.selectedCategories.forEach((x, i) => {
+        if (x == value) {
+          this.selectedCategories.splice(i, 1);
+        }
+      })
+    }
+    console.log(this.selectedCategories);
+  }
+
+  isSelected(id: string): boolean {
+    if (this.item?.categoryIds == null || this.item.categoryIds.length == 0) {
+      return false;
+    }
+    return this.item.categoryIds.some(x => x == id);
   }
 }

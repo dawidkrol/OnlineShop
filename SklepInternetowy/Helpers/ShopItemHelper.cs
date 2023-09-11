@@ -2,8 +2,6 @@
 using OnlineShop.Library.Data;
 using OnlineShop.Model;
 using SklepInternetowy.Library.Models;
-using System.Collections.Generic;
-using System.Xml.Linq;
 
 namespace OnlineShop.Helpers
 {
@@ -28,17 +26,19 @@ namespace OnlineShop.Helpers
                 output = _mapper.Map<IEnumerable<ShopItemModel>>(dbData);
                 foreach (var item in output)
                 {
-                    var ct = _mapper.Map<CategoryModel>(_categoryData.GetCategory(item.CategoryId));
-                    item.Category = ct;
+                    var tmp = new List<CategoryModel>();
+                    foreach (var cat in item.CategoryIds)
+                    {
+                        var ct = _mapper.Map<CategoryModel>(_categoryData.GetCategory(cat));
+                        tmp.Add(ct);
+                    }
+                    item.Category = tmp;
                 }
-
-                return output;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
-
             return output;
         }
 
@@ -46,8 +46,13 @@ namespace OnlineShop.Helpers
         {
             var dbData = _shopItemData.GetShopItemById(id);
             var output = _mapper.Map<ShopItemModel>(dbData);
-            var ct = _mapper.Map<CategoryModel>(_categoryData.GetCategory(output.CategoryId));
-            output.Category = ct;
+            var tmp = new List<CategoryModel>();
+            foreach (var cat in output.CategoryIds)
+            {
+                var ct = _mapper.Map<CategoryModel>(_categoryData.GetCategory(cat));
+                tmp.Add(ct);
+            }
+            output.Category = tmp;
             return output;
         }
 
@@ -57,9 +62,15 @@ namespace OnlineShop.Helpers
             var output = _mapper.Map<IEnumerable<ShopItemModel>>(dbData);
             foreach (var item in output)
             {
-                var ct = _mapper.Map<CategoryModel>(_categoryData.GetCategory(item.CategoryId));
-                item.Category = ct;
+                var tmp = new List<CategoryModel>();
+                foreach (var cat in item.CategoryIds)
+                {
+                    var ct = _mapper.Map<CategoryModel>(_categoryData.GetCategory(cat));
+                    tmp.Add(ct);
+                }
+                item.Category = tmp;
             }
+
             return output;
         }
 

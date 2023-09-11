@@ -13,7 +13,7 @@ import { AuthService } from '../../shared/services/auth.service';
 })
 export class ShopitemsAddComponent  {
   public newItem = {} as ShopItemsModel;
-  public selectedCategory: string = "";
+  public selectedCategories: string[] = [];
   public categories: CategoryModel[] = [];
   loading: boolean = false;
   file: File = {} as File;
@@ -29,7 +29,6 @@ export class ShopitemsAddComponent  {
 
   onChange(event: any) {
     this.file = event.target.files[0];
-    console.log(this.newItem.categoryId);
   }
 
   onUpload() {
@@ -70,9 +69,8 @@ export class ShopitemsAddComponent  {
   }
 
   onAddItem() {
-
-    var categ = this.categories[this.categories.findIndex(x => x.id === this.selectedCategory)];
-    this.newItem.categoryId = categ.id;
+    this.newItem.categoryIds = [];
+    this.newItem.categoryIds = this.selectedCategories;
     this.newItem.images = this.imageModels;
     var token = this.authService.getToken;
     let headers = new HttpHeaders(
@@ -83,8 +81,6 @@ export class ShopitemsAddComponent  {
       });
     const body = JSON.stringify(this.newItem);
     console.log(body);
-    console.log(headers);
-    console.log(this.baseUrl + 'shopitems');
     this.http.post(this.baseUrl + 'shopitems', body, { headers: headers }).subscribe(
       res => console.log('HTTP response', res),
       err => console.log('HTTP Error', err),
@@ -107,4 +103,18 @@ export class ShopitemsAddComponent  {
     console.log(this.imageModels);
   }
 
+  pushCheckBoxValue(event: any, value: any) {
+    if (event.target.checked) {
+      if (this.selectedCategories.every(x => x != value)) {
+        this.selectedCategories.push(value)
+      }
+    } else {
+      this.selectedCategories.forEach((x, i) => {
+        if (x == value) {
+          this.selectedCategories.splice(i, 1);
+        }
+      })
+    }
+    console.log(this.selectedCategories);
+  }
 }

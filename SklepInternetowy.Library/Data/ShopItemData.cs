@@ -43,7 +43,7 @@ namespace OnlineShop.Library.Data
         {
             return _shopContext.ShopItems
                             .Where(x => x.IsDeleted == false)
-                            .Where(x => x.CategoryId == category.Id)
+                            .Where(x => x.CategoryIds.Any(x => x == category.Id))
                             .OrderByDescending(x => x.LastUpdateDate);
         }
         public async Task CreateShopItemAsync(ShopItemDbModel model)
@@ -57,7 +57,7 @@ namespace OnlineShop.Library.Data
 
             item.Id = Guid.NewGuid();
             item.OwnerId = model.OwnerId;
-            item.CategoryId = model.CategoryId;
+            item.CategoryIds = model.CategoryIds;
 
             item.Name = model.Name;
             item.Description = model.Description;
@@ -83,7 +83,7 @@ namespace OnlineShop.Library.Data
                 .Include(x => x.Images).Single(x => x.Id == model.Id);
 
             item.OwnerId = model.OwnerId;
-            item.CategoryId = model.CategoryId;
+            item.CategoryIds = model.CategoryIds;
 
             item.Name = model.Name;
             item.Description = model.Description;

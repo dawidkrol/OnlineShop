@@ -26,6 +26,13 @@ namespace OnlineShop.Library.Database
 
                 entity.Property(x => x.Price)
                     .HasColumnType("DECIMAL(18,2)");
+
+                entity
+                .Property(e => e.CategoryIds)
+                .HasConversion(
+                    v => string.Join(',', v),
+                    v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(x => Guid.Parse(x))
+                    );
             });
             modelBuilder.Entity<CategoryDbModel>(entity =>
             {
