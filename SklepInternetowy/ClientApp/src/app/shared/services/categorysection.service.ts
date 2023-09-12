@@ -1,21 +1,17 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { ContactItemTemplateClass } from '../../classes/ContactItemTemplateClass';
+import Swal from 'sweetalert2';
+import { CategoryModel } from '../../classes/CategoryModel';
 import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ContactSectionService {
+export class CategorysectionService {
 
   constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, public authService: AuthService) { }
 
-  getContactInfo() {
-    return this.http.get<ContactItemTemplateClass[]>(this.baseUrl + 'contact');
-  }
-
-  update(model: ContactItemTemplateClass) {
+  delete(id: any) {
     var token = this.authService.getToken;
     let headers = new HttpHeaders(
       {
@@ -23,12 +19,30 @@ export class ContactSectionService {
         'Accept': 'application/json',
         'Authorization': 'Bearer ' + token
       });
-    const body = JSON.stringify(model);
+    let httpParams = new HttpParams().set('id', id);
+
+    return this.http.delete(this.baseUrl + 'categories', { params: httpParams, headers: headers });
+
+  }
+
+  loadCategories() {
+    return this.http.get<CategoryModel[]>(this.baseUrl + 'categories');
+  }
+
+  edit(cat: CategoryModel) {
+    var token = this.authService.getToken;
+    let headers = new HttpHeaders(
+      {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ' + token
+      });
+    const body = JSON.stringify(cat);
     console.log(body);
-    return this.http.put(this.baseUrl + 'contact', body, { headers: headers });
+    return this.http.put(this.baseUrl + 'categories', body, { headers: headers });
   }
 
-  add(model: ContactItemTemplateClass) {
+  add(newCategory: CategoryModel) {
     var token = this.authService.getToken;
     let headers = new HttpHeaders(
       {
@@ -36,21 +50,8 @@ export class ContactSectionService {
         'Accept': 'application/json',
         'Authorization': 'Bearer ' + token
       });
-    const body = JSON.stringify(model);
+    const body = JSON.stringify(newCategory);
     console.log(body);
-    return this.http.post(this.baseUrl + 'contact', body, { headers: headers });
-  }
-
-  delete(id: number) {
-    let httpParams = new HttpParams().set('id', id).set('observe', 'response');
-    var token = this.authService.getToken;
-    let headers = new HttpHeaders(
-      {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': 'Bearer ' + token
-      });
-
-    return this.http.delete(this.baseUrl + 'contact', { params: httpParams, headers: headers })
+    return this.http.post(this.baseUrl + 'categories', body, { headers: headers });
   }
 }

@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Inject, Injectable } from '@angular/core';
 import { ContactItemTemplateClass } from '../../classes/ContactItemTemplateClass';
 import { ContactSectionService } from '../../shared/services/contactSection.service';
 
@@ -11,24 +12,39 @@ export class ContactinfoManagementService {
   constructor(public service: ContactSectionService) { }
 
   loadContactInfo() {
-    this.service.getContactInfo().subscribe(data => {
-      this.contactinfos = data;
-    });
+    this.service.getContactInfo().subscribe(
+      result => {
+        this.contactinfos = result;
+      });
   }
 
   update(model: ContactItemTemplateClass) {
-    this.service.update(model);
-    this.loadContactInfo();
+    this.service.update(model).subscribe({
+      complete: () => {
+        this.loadContactInfo();
+      },
+    }
+    );
   }
 
   add() {
-    this.service.add(this.newContactInfo);
-    this.loadContactInfo();
-    this.newContactInfo = {} as ContactItemTemplateClass;
+    this.service.add(this.newContactInfo).subscribe(
+      {
+        complete: () => {
+          this.loadContactInfo();
+          this.newContactInfo = {} as ContactItemTemplateClass;
+        },
+      }
+    );
   }
 
   delete(id: number) {
-    this.service.delete(id);
-    this.loadContactInfo();
+    this.service.delete(id).subscribe(
+      res => console.log('HTTP response', res),
+      err => console.log('HTTP Error', err),
+      () => {
+        console.log('HTTP request completed.');
+        this.loadContactInfo();
+      });
   }
 }

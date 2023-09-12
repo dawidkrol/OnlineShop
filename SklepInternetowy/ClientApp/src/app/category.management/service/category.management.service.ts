@@ -1,8 +1,7 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import Swal from 'sweetalert2';
 import { CategoryModel } from '../../classes/CategoryModel';
-import { AuthService } from '../../shared/services/auth.service';
+import { CategorysectionService } from '../../shared/services/categorysection.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,19 +11,10 @@ export class CategoryManagementService {
   public categories: CategoryModel[] = [];
   public newCategory: CategoryModel = {} as CategoryModel;
 
-  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, public authService: AuthService) { }
+  constructor(private service: CategorysectionService) { }
 
   delete(id: any) {
-    var token = this.authService.getToken;
-    let headers = new HttpHeaders(
-      {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': 'Bearer ' + token
-      });
-    let httpParams = new HttpParams().set('id', id);
-
-    this.http.delete(this.baseUrl + 'categories', { params: httpParams, headers: headers }).subscribe(
+    this.service.delete(id).subscribe(
       res => {
       },
       err => {
@@ -37,43 +27,28 @@ export class CategoryManagementService {
   }
 
   loadCategories() {
-    this.http.get<CategoryModel[]>(this.baseUrl + 'categories').subscribe(result => {
+    this.service.loadCategories().subscribe(result => {
       this.categories = result;
     }, error => console.error(error));
   }
 
   edit(cat: CategoryModel) {
-    var token = this.authService.getToken;
-    let headers = new HttpHeaders(
+    this.service.edit(cat).subscribe(
       {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': 'Bearer ' + token
-      });
-    const body = JSON.stringify(cat);
-    console.log(body);
-    this.http.put(this.baseUrl + 'categories', body, { headers: headers }).subscribe(
-      () => console.log('HTTP request completed.')
+        complete: () => {
+          this.loadCategories();
+        },
+      }
     );
   }
 
   add() {
-    var token = this.authService.getToken;
-    let headers = new HttpHeaders(
-      {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': 'Bearer ' + token
-      });
-    const body = JSON.stringify(this.newCategory);
-    console.log(body);
-    this.http.post(this.baseUrl + 'categories', body, { headers: headers }).subscribe(
-      res => console.log('HTTP response', res),
-      err => console.log('HTTP Error', err),
-      () => {
-        console.log('HTTP request completed.');
+    this.service.add(this.newCategory).subscribe({
+      complete: () => {
         this.loadCategories();
+        this.newCategory = {} as CategoryModel;
       }
+    }
     );
   }
 }

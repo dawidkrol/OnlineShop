@@ -1,11 +1,11 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ShopItemsModel } from '../../classes/ShopItemsModel';
 import { ImageModel } from '../../classes/ImageModel';
 import { CategoryModel } from '../../classes/CategoryModel';
 import { getStorage, ref, uploadBytesResumable, getDownloadURL, deleteObject } from "firebase/storage";
-import { AuthService } from '../../shared/services/auth.service';
+import { ShopitemssectionService } from '../../shared/services/shopitemssection.service';
+import { CategorysectionService } from '../../shared/services/categorysection.service';
 
 @Component({
   selector: 'app-shopitems-edit',
@@ -21,42 +21,29 @@ export class ShopitemsEditComponent {
   loading: boolean = false;
   file: File = {} as File;
 
-  constructor(private route: ActivatedRoute, private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, private router: Router, public authService: AuthService)
+  constructor(private route: ActivatedRoute, private router: Router, private service: ShopitemssectionService, private categoryService: CategorysectionService)
   {
-
     this.route
       .queryParams
       .subscribe(params => {
         this._id = params['itemsToEditId'];
       });
 
-    this.http.get<ShopItemsModel>(baseUrl + 'shopitems/getById/' + this._id).subscribe(result => {
-      this.item = result;
-      this.item.category.forEach(x => this.selectedCategories.push(x.id));
+    categoryService.loadCategories().subscribe(result => {
+      this.categories = result;
     }, error => console.error(error));
 
-
-    http.get<CategoryModel[]>(baseUrl + 'categories').subscribe(result => {
-      this.categories = result;
-      console.log(result.length);
+    this.service.getItemById(this._id).subscribe(result => {
+      this.item = result;
+      this.item.category.forEach(x => this.selectedCategories.push(x.id));
     }, error => console.error(error));
   }
 
   onUpdate() {
-    var token = this.authService.getToken;
-    let headers = new HttpHeaders(
-      {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': 'Bearer ' + token
-      });
     this.item.categoryIds = this.selectedCategories;
-    const body = JSON.stringify(this.item);
-    console.log(body);
-    this.http.put(this.baseUrl + 'shopitems', body, { headers: headers }).subscribe(
+    this.service.update(this.item).subscribe(
       () => console.log('HTTP request completed.')
     );
-
     this.router.navigate(['']);
   }
 

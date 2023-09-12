@@ -1,7 +1,7 @@
 
 <div class="container marketing">
   <!-- Edit/Delete section -->
-  <ng-container *ngFor="let article of articles; index as i">
+  <ng-container *ngFor="let article of service.articles; index as i">
     <div class="row featurette">
       <div class="col-md-7">
         <h2 class="featurette-heading fw-normal lh-1"><input class="text-body-secondary" type="text" [(ngModel)]="article.title" /></h2>
@@ -9,17 +9,17 @@
       </div>
       <div class="col-md-5">
         <div class="input-group">
-          <input type="file" class="form-control" aria-describedby="inputGroupFileAddon04" aria-label="Upload" (change)="onChange($event)">
-          <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" (click)="onUpload(article.id)">Upload</button>
+          <input type="file" class="form-control" aria-describedby="inputGroupFileAddon04" aria-label="Upload" (change)="service.onChange($event)">
+          <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" (click)="service.onUpload(article.id)">Upload</button>
         </div>
 
         <div class="card-group">
-            <button class="btn btn-outline-danger" (click)="onDeleteImg(article.id)">X</button>
+            <button class="btn btn-outline-danger" (click)="service.onDeleteImg(article.id)">X</button>
             <img src="{{article.imageUrl}}" class="card-img-top">
         </div>
       </div>
-      <button class="btn btn-outline-warning" (click)="update(article)">Update</button>
-      <button class="btn btn-outline-danger" (click)="delete(article.id)">Delete</button>
+      <button class="btn btn-outline-warning" (click)="service.update(article)">Update</button>
+      <button class="btn btn-outline-danger" (click)="service.delete(article.id)">Delete</button>
     </div>
     <hr class="featurette-divider">
   </ng-container>
@@ -27,21 +27,21 @@
   <!-- Adding section -->
   <div class="row featurette">
     <div class="col-md-7">
-      <h2 class="featurette-heading fw-normal lh-1"><input class="text-body-secondary" type="text" [(ngModel)]="newArticle.title" /></h2>
-      <textarea type="text" [(ngModel)]="newArticle.description"></textarea>
+      <h2 class="featurette-heading fw-normal lh-1"><input class="text-body-secondary" type="text" [(ngModel)]="service.newArticle.title" /></h2>
+      <textarea type="text" [(ngModel)]="service.newArticle.description"></textarea>
     </div>
     <div class="col-md-5">
       <div class="input-group">
-        <input type="file" class="form-control" aria-describedby="inputGroupFileAddon04" aria-label="Upload" (change)="onChange($event)">
-        <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" (click)="onUploadPicturetoNewArticle()">Upload</button>
+        <input type="file" class="form-control" aria-describedby="inputGroupFileAddon04" aria-label="Upload" (change)="service.onChange($event)">
+        <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" (click)="service.onUploadPicturetoNewArticle()">Upload</button>
       </div>
 
       <div class="card-group">
-        <button class="btn btn-outline-danger" (click)="onDeleteImg('')">X</button>
-        <img src="{{newArticle.imageUrl}}" class="card-img-top">
+        <button class="btn btn-outline-danger" (click)="service.onDeleteImg('')">X</button>
+        <img src="{{service.newArticle.imageUrl}}" class="card-img-top">
       </div>
     </div>
   </div>
-  <button class="btn btn-outline-success" (click)="add()">Add article</button>
+  <button class="btn btn-outline-success" (click)="service.add()">Add article</button>
   <br />
 </div>

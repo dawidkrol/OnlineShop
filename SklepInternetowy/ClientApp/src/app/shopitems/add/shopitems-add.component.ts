@@ -1,11 +1,11 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ShopItemsModel } from '../../classes/ShopItemsModel'
 import { CategoryModel } from '../../classes/CategoryModel'
 import { ImageModel } from '../../classes/ImageModel'
 import { getStorage, ref, uploadBytesResumable, getDownloadURL, deleteObject } from "firebase/storage";
-import { AuthService } from '../../shared/services/auth.service';
+import { ShopitemssectionService } from '../../shared/services/shopitemssection.service';
+import { CategorysectionService } from '../../shared/services/categorysection.service';
 
 @Component({
   selector: 'app-shopitems-add',
@@ -19,12 +19,10 @@ export class ShopitemsAddComponent  {
   file: File = {} as File;
   imageModels: ImageModel[] = [];
 
-  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, private router: Router, public authService: AuthService) {
-
-    http.get<CategoryModel[]>(baseUrl + 'categories').subscribe(result => {
+  constructor(public service: ShopitemssectionService, private router: Router, private categoryService: CategorysectionService) {
+    this.categoryService.loadCategories().subscribe(result => {
       this.categories = result;
     }, error => console.error(error));
-
   }
 
   onChange(event: any) {
@@ -72,16 +70,7 @@ export class ShopitemsAddComponent  {
     this.newItem.categoryIds = [];
     this.newItem.categoryIds = this.selectedCategories;
     this.newItem.images = this.imageModels;
-    var token = this.authService.getToken;
-    let headers = new HttpHeaders(
-      {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': 'Bearer ' + token
-      });
-    const body = JSON.stringify(this.newItem);
-    console.log(body);
-    this.http.post(this.baseUrl + 'shopitems', body, { headers: headers }).subscribe(
+    this.service.addItem(this.newItem).subscribe(
       res => console.log('HTTP response', res),
       err => console.log('HTTP Error', err),
       () => {

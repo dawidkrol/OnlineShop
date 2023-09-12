@@ -1,11 +1,9 @@
-import { Component, Inject, OnInit, NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ShopItemsModel } from '../../classes/ShopItemsModel'
-import { CommonModule } from '@angular/common';
 import { EmailModel } from '../../classes/EmailModel';
-import { FormBuilder } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { ShopitemssectionService } from '../../shared/services/shopitemssection.service';
 
 @Component({
   selector: 'app-shopitems-viewone',
@@ -18,14 +16,14 @@ export class ShopitemsViewOneComponent {
   public item: ShopItemsModel = {} as ShopItemsModel;
   public email: EmailModel = {} as EmailModel;
 
-  constructor(private route: ActivatedRoute, private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) {
+  constructor(private route: ActivatedRoute, private service: ShopitemssectionService) {
     this.route
       .queryParams
       .subscribe(params => {
         this._id = params['itemsToViewId'];
       });
 
-    this.http.get<ShopItemsModel>(baseUrl + 'shopitems/getById/' + this._id).subscribe(result => {
+    this.service.getItemById(this._id).subscribe(result => {
       this.item = result;
     }, error => console.error(error));
   }
@@ -49,14 +47,7 @@ export class ShopitemsViewOneComponent {
   }
 
   sendEmail() {
-    this.email.productUri = this.baseUrl + '/shopitems-viewone?itemsToViewId=' + this.item.id;
-    let headers = new HttpHeaders(
-      {
-        'Content-Type': 'application/json',
-      });
-    const body = JSON.stringify(this.email);
-    console.log(body);
-    this.http.post(this.baseUrl + 'email', body, { headers: headers }).subscribe(
+    this.service.sendEmail(this.email,this.item.id).subscribe(
       res => console.log('HTTP response', res),
       err => {
         console.log('HTTP Error', err);
