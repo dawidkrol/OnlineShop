@@ -8,7 +8,8 @@ import { CategorysectionService } from '../../shared/services/categorysection.se
 
 @Component({
   selector: 'app-shopitems',
-  templateUrl: './shopitems.component.html'
+  templateUrl: './shopitems.component.html',
+  styleUrls: ['./shopitems.component.css']
 })
 export class ShopitemsComponent {
   public shopitems: ShopItemsModel[] = [];

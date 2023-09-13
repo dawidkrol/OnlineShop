@@ -4,16 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatSortModule } from '@angular/material/sort';
-import { MatTableModule } from '@angular/material/table';
-import { MatIconModule } from '@angular/material/icon';
-import { MatSelectModule } from '@angular/material/select';
-import { MatRadioModule } from '@angular/material/radio';
-import { MatButtonModule } from '@angular/material/button';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
@@ -36,6 +26,8 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { AuthGuard } from './shared/services/AuthGuard';
+
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 //// Initialize Firebase
 const app = initializeApp(environment.firebase);
@@ -61,17 +53,8 @@ const storage = getStorage(app);
   ],
   imports: [
     CommonModule,
-    MatTableModule,
-    MatSortModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatIconModule,
-    MatSelectModule,
-    MatRadioModule,
-    MatButtonModule,
-    BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+    BrowserModule,
+    SlickCarouselModule,
     HttpClientModule,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
@@ -89,25 +72,13 @@ const storage = getStorage(app);
       { path: 'contactinfo-management', component: ContactinfoManagementComponent, canActivate: [AuthGuard] },
       { path: 'sign-in', component: SignInComponent },
       { path: 'register-user', component: SignUpComponent },
-      { path: 'forgot-password', component: ForgotPasswordComponent },
+      { path: 'forgot-password', component: ForgotPasswordComponent }
     ]),
   ],
   providers: [],
   bootstrap: [AppComponent],
   exports: [
-    CommonModule,
-    MatTableModule,
-    MatSortModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatIconModule,
-    MatSelectModule,
-    MatRadioModule,
-    MatButtonModule,
-
+    CommonModule
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
