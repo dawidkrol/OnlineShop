@@ -1,16 +1,6 @@
 <div class="container text-center">
   <div class="row">
     <div class="col-8">
-      <!--<ngx-slick-carousel class="carousel"
-                          [config]="slideConfig"
-                          (init)="slickInit($event)"
-                          (breakpoint)="breakpoint($event)"
-                          (afterChange)="afterChange($event)"
-                          (beforeChange)="beforeChange($event)">
-        <div ngxSlickItem *ngFor="let img of item.images" class="slide">
-          <img src="{{ img.imageUri }}" alt="" width="100%">
-        </div>
-      </ngx-slick-carousel>-->
       <div id="carouselExample" class="carousel slide">
         <div class="carousel-inner">
           <div class="carousel-item active" *ngFor="let img of item.images">
@@ -54,7 +44,7 @@
           <input name="email" type="email" placeholder="Your email" class="form-control form-control-lg" [(ngModel)]="email.sender" required />
         </div>
 
-        <button type="submit" class="btn btn-outline-primary" (click)="sendEmail()">Send</button>
+        <button type="submit" class="btn btn-outline-primary" (click)="sendEmail()">Wyślij email</button>
       </form>
     </div>
   </div>

@@ -3,16 +3,16 @@
 
     <ul class="list-unstyled mb-3" *ngIf="authService.isLoggedIn">
       <li class="media">
-        <button class="btn btn-outline-primary m-1" (click)="goToAdd()">Add new item</button>
+        <button class="btn btn-outline-primary m-1" (click)="goToAdd()">Dodaj produkt</button>
       </li>
       <li class="media">
-        <button class="btn btn-outline-primary m-1" [routerLink]="['/category-management']">Category management</button>
+        <button class="btn btn-outline-primary m-1" [routerLink]="['/category-management']">Zarządzanie kategoriami</button>
       </li>
     </ul>
 
     <article class="card-group-item">
       <header class="card-header">
-        <h6 class="title">Categories</h6>
+        <h6 class="title">Kategorie</h6>
       </header>
       <div class="filter-content">
         <div class="card-body">
@@ -20,7 +20,7 @@
             <div class="form-check">
               <input class="form-check-input" type="radio" name="exampleRadios" [(ngModel)]="filterCategoryId" id="exampleRadios1" value="" (click)="filter()" checked>
               <label class="form-check-label" for="exampleRadios1">
-                All categories
+                Wszystkie kategorie
               </label>
             </div>
             <div class="form-check" *ngFor="let category of categories">
@@ -60,9 +60,9 @@
                 <p class="card-text">{{ shopitem.description }}</p>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-primary" (click)="goToView(shopitem.id)">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary" (click)="goToEdit(shopitem.id)" *ngIf="authService.isLoggedIn">Edit</button>
-                    <button type="button" class="btn btn-sm btn-outline-danger" (click)="goToDelete(shopitem.id)" *ngIf="authService.isLoggedIn">Delete</button>
+                    <button type="button" class="btn btn-sm btn-outline-primary" (click)="goToView(shopitem.id)">Więcej</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" (click)="goToEdit(shopitem.id)" *ngIf="authService.isLoggedIn">Edytuj</button>
+                    <button type="button" class="btn btn-sm btn-outline-danger" (click)="goToDelete(shopitem.id)" *ngIf="authService.isLoggedIn">Usuń</button>
                   </div>
                 </div>
               </div>

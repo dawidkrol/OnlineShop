@@ -1,6 +1,5 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import Swal from 'sweetalert2';
 import { CategoryModel } from '../../classes/CategoryModel';
 import { AuthService } from './auth.service';
 

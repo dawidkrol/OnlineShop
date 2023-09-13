@@ -1,7 +1,7 @@
 <div class="displayTable">
   <div class="displayTableCell">
     <div class="authBlock">
-      <h3>Sign In</h3>
+      <h3>Logowanie</h3>
       <div class="formGroup">
         <input type="text"
                class="formControl m-2"
@@ -20,11 +20,11 @@
       <div class="m-2">
         <button class="btn btn-outline-primary m-1"
                 (click)="authService.SignIn(userName.value, userPassword.value)">
-          Log in
+          Zaloguj się
         </button>
         <div class="forgotPassword">
-          <a class="btn btn-outline-warning m-1" [routerLink]="['/register-user']">Go to register page</a>
-          <a class="btn btn-light" [routerLink]="['/forgot-password']">Forgot Password?</a>
+          <a class="btn btn-outline-warning m-1" [routerLink]="['/register-user']">Przejdź do rejestracji</a>
+          <a class="btn btn-light" [routerLink]="['/forgot-password']">Zapomniałem hasła</a>
           </div>
         </div>
       </div>

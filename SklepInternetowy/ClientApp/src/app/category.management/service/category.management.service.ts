@@ -29,7 +29,7 @@ export class CategoryManagementService {
   loadCategories() {
     this.service.loadCategories().subscribe(result => {
       this.categories = result;
-    }, error => console.error(error));
+    });
   }
 
   edit(cat: CategoryModel) {

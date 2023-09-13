@@ -1,14 +1,14 @@
 <div class="mb-3">
-  <label for="exampleFormControlInput1" class="form-label">Product name</label>
+  <label for="exampleFormControlInput1" class="form-label">Nazwa produktu</label>
   <input class="form-control form-control-lg" type="text" placeholder="Product name" aria-label=".form-control-lg example" [(ngModel)]="newItem.name" maxlength="50">
 </div>
 
 <div class="mb-3">
-  <label for="exampleFormControlTextarea1" class="form-label">Product description</label>
+  <label for="exampleFormControlTextarea1" class="form-label">Opis</label>
   <textarea class="form-control" id="exampleFormControlTextarea1" rows="4" [(ngModel)]="newItem.description" size="30"></textarea>
 </div>
 
-<div class="mb-3" style="width: 22rem;">
+<!--<div class="mb-3" style="width: 22rem;">
   <label for="exampleFormControlTextarea1" class="form-label">Product value</label>
   <input type="number" id="form1" class="form-control form-icon-trailing" [(ngModel)]="newItem.price" />
 </div>
@@ -16,10 +16,10 @@
 <div class="mb-3" style="width: 22rem;">
   <label for="exampleFormControlTextarea1" class="form-label">Product quantity</label>
   <input type="number" id="form1" class="form-control form-icon-trailing" [(ngModel)]="newItem.quantity" />
-</div>
+</div>-->
 
 <div class="mb-3">
-  <label for="exampleFormControlTextarea1" class="form-label">Select categories</label>
+  <label for="exampleFormControlTextarea1" class="form-label">Kategorie</label>
   <br />
   <div class="form-check form-check-inline" *ngFor="let category of categories">
     <input class="form-check-input" type="checkbox" id="{{category.id}}" [value]="category.id" (click)="pushCheckBoxValue($event, category.id)">
@@ -29,7 +29,7 @@
 
 <div class="input-group">
   <input type="file" class="form-control" aria-describedby="inputGroupFileAddon04" aria-label="Upload" (change)="onChange($event)">
-  <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" (click)="onUpload()">Upload</button>
+  <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" (click)="onUpload()">Prześlij</button>
 </div>
 
 <div class="card-group row-cols-1 row-cols-md-4">
@@ -40,8 +40,8 @@
 </div>
 
 <div class="container" *ngIf="loading">
-  <h3>Loading ...</h3>
+  <h3>Ładowanie ...</h3>
 </div>
 
 <br />
-<button class="btn btn-outline-success" (click)="onAddItem()">Add</button>
+<button class="btn btn-outline-success" (click)="onAddItem()">Dodaj</button>

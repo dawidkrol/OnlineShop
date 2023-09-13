@@ -3,7 +3,9 @@
     class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
   >
     <div class="container">
-      <a class="navbar-brand" [routerLink]="['/']">SklepInternetowy</a>
+      <a class="navbar-brand" [routerLink]="['/']">
+        <img height="70" src="https://firebasestorage.googleapis.com/v0/b/monali-32546.appspot.com/o/LOGO%2Fmonali-logo.png?alt=media&token=32ea90e2-1880-49aa-8993-b5da262a7654" />
+      </a>
       <button
         class="navbar-toggler"
         type="button"
@@ -24,20 +26,20 @@
               [routerLinkActive]="['link-active']"
               [routerLinkActiveOptions]="{ exact: true }">
 
-            <a class="nav-link text-dark" [routerLink]="['/']">Main page</a>
+            <a class="nav-link text-dark" [routerLink]="['/']">Strona główna</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/shopitems']">Products</a>
+            <a class="nav-link text-dark" [routerLink]="['/shopitems']">Produkty</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/contact']">Contact</a>
+            <a class="nav-link text-dark" [routerLink]="['/contact']">Kontakt</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="authService.isLoggedIn">
-            <a class="nav-link text-dark" (click)="authService.SignOut()">Logout</a>
+            <a class="nav-link text-dark" (click)="authService.SignOut()">Wyloguj</a>
           </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="!authService.isLoggedIn">
+          <!--<li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="!authService.isLoggedIn">
             <a class="nav-link text-dark" [routerLink]="['/sign-in']">SignIn</a>
-          </li>
+          </li>-->
         </ul>
       </div>
     </div>

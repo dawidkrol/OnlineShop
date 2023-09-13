@@ -1,6 +1,6 @@
 {
   "name": "sklepinternetowy",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "prestart": "node aspnetcore-https",
@@ -28,14 +28,11 @@
     "bootstrap": "^4.0.0",
     "firebase": "^9.16.0",
     "jquery": "^3.7.0",
-    "ngx-slick-carousel": "^15.0.0",
     "oidc-client": "^1.11.5",
     "popper.js": "^1.16.0",
     "run-script-os": "^1.1.6",
     "rxjs": "~7.5.5",
-    "slick-carousel": "^1.8.1",
     "sweetalert2": "^11.6.13",
-    "swiper": "^10.2.0",
     "tslib": "^2.4.0",
     "zone.js": "~0.11.6"
   },

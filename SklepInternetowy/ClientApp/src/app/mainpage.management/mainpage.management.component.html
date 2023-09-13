@@ -10,7 +10,7 @@
       <div class="col-md-5">
         <div class="input-group">
           <input type="file" class="form-control" aria-describedby="inputGroupFileAddon04" aria-label="Upload" (change)="service.onChange($event)">
-          <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" (click)="service.onUpload(article.id)">Upload</button>
+          <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" (click)="service.onUpload(article.id)">Prześlij obraz</button>
         </div>
 
         <div class="card-group">
@@ -18,8 +18,8 @@
             <img src="{{article.imageUrl}}" class="card-img-top">
         </div>
       </div>
-      <button class="btn btn-outline-warning" (click)="service.update(article)">Update</button>
-      <button class="btn btn-outline-danger" (click)="service.delete(article.id)">Delete</button>
+      <button class="btn btn-outline-warning" (click)="service.update(article)">Edytuj</button>
+      <button class="btn btn-outline-danger" (click)="service.delete(article.id)">Usuń</button>
     </div>
     <hr class="featurette-divider">
   </ng-container>
@@ -33,7 +33,7 @@
     <div class="col-md-5">
       <div class="input-group">
         <input type="file" class="form-control" aria-describedby="inputGroupFileAddon04" aria-label="Upload" (change)="service.onChange($event)">
-        <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" (click)="service.onUploadPicturetoNewArticle()">Upload</button>
+        <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" (click)="service.onUploadPicturetoNewArticle()">Prześlij obraz</button>
       </div>
 
       <div class="card-group">
@@ -42,6 +42,6 @@
       </div>
     </div>
   </div>
-  <button class="btn btn-outline-success" (click)="service.add()">Add article</button>
+  <button class="btn btn-outline-success" (click)="service.add()">Dodaj artykuł</button>
   <br />
 </div>

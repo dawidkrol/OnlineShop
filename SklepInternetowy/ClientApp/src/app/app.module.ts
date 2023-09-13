@@ -14,7 +14,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonModule } from '@angular/material/button';
-import { register } from 'swiper/element/bundle';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
@@ -28,7 +27,6 @@ import { ShopitemsAddComponent } from './shopitems/add/shopitems-add.component';
 import { ShopitemsDeleteComponent } from './shopitems/delete/shopitems-delete.component';
 import { ShopitemsViewOneComponent } from './shopitems/viewOne/shopitems-viewone.component';
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 import { getStorage } from "firebase/storage";
 import { ContactComponent } from './contact/contact.component';
 import { MainpageManagementComponent } from './mainpage.management/mainpage.management.component';
@@ -39,12 +37,8 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { AuthGuard } from './shared/services/AuthGuard';
 
-
-register();
-
 //// Initialize Firebase
 const app = initializeApp(environment.firebase);
-const analytics = getAnalytics(app);
 const storage = getStorage(app);
 
 @NgModule({
