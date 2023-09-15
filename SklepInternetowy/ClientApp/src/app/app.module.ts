@@ -27,8 +27,6 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { AuthGuard } from './shared/services/AuthGuard';
 
-import { SlickCarouselModule } from 'ngx-slick-carousel';
-
 //// Initialize Firebase
 const app = initializeApp(environment.firebase);
 const storage = getStorage(app);
@@ -54,7 +52,6 @@ const storage = getStorage(app);
   imports: [
     CommonModule,
     BrowserModule,
-    SlickCarouselModule,
     HttpClientModule,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),

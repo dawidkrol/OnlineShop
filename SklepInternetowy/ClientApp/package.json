@@ -1,6 +1,6 @@
 {
   "name": "sklepinternetowy",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "scripts": {
     "ng": "ng",
     "prestart": "node aspnetcore-https",
@@ -44,9 +44,11 @@
     "@angular-devkit/build-angular": "^16.2.2",
     "@angular/cli": "^16.2.2",
     "@angular/compiler-cli": "^16.2.5",
+    "@types/hammerjs": "^2.0.41",
     "@types/jasmine": "~4.0.3",
     "@types/jasminewd2": "~2.0.10",
     "@types/node": "^20.6.0",
+    "hammerjs": "^2.0.8",
     "jasmine-core": "~4.2.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.1.1",

@@ -15,6 +15,7 @@ export class ShopitemsViewOneComponent {
   public _id: string | undefined;
   public item: ShopItemsModel = {} as ShopItemsModel;
   public email: EmailModel = {} as EmailModel;
+  public folded: boolean = true;
 
   constructor(private route: ActivatedRoute, private service: ShopitemssectionService) {
     this.route
@@ -58,6 +59,11 @@ export class ShopitemsViewOneComponent {
         this.email = {} as EmailModel;
       }
     );
+    this.folded = true;
+  }
+
+  open() {
+    this.folded = false;
   }
 
 }

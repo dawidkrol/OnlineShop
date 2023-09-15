@@ -29,7 +29,8 @@
       </div>-->
     </div>
   </div>
-  <div class="row mt-5">
+  <button type="submit" *ngIf="folded == true" class="btn btn-outline-secondary m-5" (click)="open()">Zapytaj sprzedawcę o szczegóły</button>
+  <div class="row mt-5 mb-5" *ngIf="folded == false">
     <div class="container">
       <form>
         <div class="row mb-3 w-50">
