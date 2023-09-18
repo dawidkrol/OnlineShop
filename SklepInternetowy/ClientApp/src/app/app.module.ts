@@ -7,6 +7,8 @@ import { CommonModule } from '@angular/common';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { PhotoGalleryModule } from '@twogate/ngx-photo-gallery'
+
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -50,6 +52,7 @@ const storage = getStorage(app);
     ShopitemsViewOneComponent,
   ],
   imports: [
+    PhotoGalleryModule,
     CommonModule,
     BrowserModule,
     HttpClientModule,

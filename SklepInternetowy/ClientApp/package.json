@@ -1,6 +1,6 @@
 {
   "name": "sklepinternetowy",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "scripts": {
     "ng": "ng",
     "prestart": "node aspnetcore-https",
@@ -27,6 +27,7 @@
     "@angular/platform-server": "^16.2.5",
     "@angular/router": "^16.2.5",
     "@marcreichel/angular-carousel": "^3.0.1",
+    "@twogate/ngx-photo-gallery": "^1.6.0",
     "bootstrap": "^4.0.0",
     "firebase": "^9.16.0",
     "jquery": "^3.7.1",
