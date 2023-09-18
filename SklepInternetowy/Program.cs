@@ -1,8 +1,4 @@
-using FirebaseAdmin;
-using Google;
-using Google.Apis.Auth.OAuth2;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using OnlineShop.Helpers;
@@ -35,6 +31,17 @@ builder.Services
             ValidateLifetime = true
         };
     });
+
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder =>
+    {
+        builder
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+    });
+});
 
 builder.Services.AddDbContext<ShopContext>(options =>
                         options.UseSqlServer(configuration.GetConnectionString("ShopDatabase")));
@@ -78,10 +85,10 @@ builder.Services.AddTransient<IEmailSenderHelper, EmailSenderHelper>();
 var app = builder.Build();
 
 
-if (!app.Environment.IsDevelopment())
-{
-    app.UseHsts();
-}
+//if (!app.Environment.IsDevelopment())
+//{
+//    app.UseHsts();
+//}
 
 using (var serviceScope = app.Services.GetService<IServiceScopeFactory>().CreateScope())
 {

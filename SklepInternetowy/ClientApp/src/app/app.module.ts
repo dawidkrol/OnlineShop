@@ -7,8 +7,8 @@ import { CommonModule } from '@angular/common';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
-import { PhotoGalleryModule } from '@twogate/ngx-photo-gallery'
-
+import { PhotoGalleryModule } from '@twogate/ngx-photo-gallery';
+import { MatCarouselModule } from '@thouet/material-carousel';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -28,6 +28,7 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { AuthGuard } from './shared/services/AuthGuard';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //// Initialize Firebase
 const app = initializeApp(environment.firebase);
@@ -52,6 +53,7 @@ const storage = getStorage(app);
     ShopitemsViewOneComponent,
   ],
   imports: [
+    MatCarouselModule,
     PhotoGalleryModule,
     CommonModule,
     BrowserModule,
@@ -74,6 +76,7 @@ const storage = getStorage(app);
       { path: 'register-user', component: SignUpComponent },
       { path: 'forgot-password', component: ForgotPasswordComponent }
     ]),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
@@ -81,4 +84,5 @@ const storage = getStorage(app);
     CommonModule
   ],
 })
-export class AppModule { }
+export class AppModule {
+}

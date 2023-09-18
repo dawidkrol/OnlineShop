@@ -5,6 +5,7 @@ import { CategoryModel } from '../../classes/CategoryModel';
 import { AuthService } from '../../shared/services/auth.service';
 import { ShopitemssectionService } from '../../shared/services/shopitemssection.service';
 import { CategorysectionService } from '../../shared/services/categorysection.service';
+import { MatCarousel, MatCarouselComponent } from '@thouet/material-carousel';
 
 @Component({
   selector: 'app-shopitems',
