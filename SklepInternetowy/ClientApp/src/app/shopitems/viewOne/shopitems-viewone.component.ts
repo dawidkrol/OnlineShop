@@ -52,10 +52,10 @@ export class ShopitemsViewOneComponent {
       res => console.log('HTTP response', res),
       err => {
         console.log('HTTP Error', err);
-        Swal.fire("Email", "Failed to send the email, please check if the data is correct.", "error");
+        Swal.fire("Email", "Nie udało się wysłać emaila. Sprawdź czy dane są prawidłowe.", "error");
       },
       () => {
-        Swal.fire("Email", "The email has been successfully sent, you will receive a response shortly.", "success");
+        Swal.fire("Email", "Wiadomość email została pomyślnie wysłana, wkrótce otrzymasz odpowiedź.", "success");
         this.email = {} as EmailModel;
       }
     );

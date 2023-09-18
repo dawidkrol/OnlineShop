@@ -18,7 +18,7 @@ export class CategoryManagementService {
       res => {
       },
       err => {
-        Swal.fire("ERROR", "This category cannot be deleted due to existing products assigned to it.", "error");
+        Swal.fire("BŁĄD", "Tej kategorii nie można usunąć ze względu na przypisane do niej istniejące produkty.", "error");
       },
       () => {
         this.loadCategories();
