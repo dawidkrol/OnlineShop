@@ -1,31 +1,33 @@
-<div class="justify-content-between">
+<div class="container min-vh-100">
+  <div class="justify-content-between">
 
-  <h3 class="text-danger text-center d-flex p-2">Na pewno chcesz usunąć ten produkt?</h3>
+    <h3 class="text-danger text-center d-flex p-2">Na pewno chcesz usunąć ten produkt?</h3>
 
-     <div class="album py-5 bg-body-tertiary d-flex p-2 justify-content-between" >
-       <div class="container">
-         <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 g-3">
-           <div class="card shadow-sm">
-             <div class="container">
-               <div class="row gallery justify-content-md-center" photoGalleryGroup>
-                 <div class="col-lg-5 col-md-12 mb-4 mb-lg-0" *ngFor="let img of shopItem.images">
-                   <div class="images-item w-100 shadow-1-strong rounded mb-4" [photoGallery]="img.imageUri">
-                     <img class="img-fluid" [src]="img.imageUri" />
-                   </div>
-                 </div>
-               </div>
-             </div>
-             <div class="card-body">
-               <h3 class="card-text">{{ shopItem.name }}</h3>
-               <p class="card-text">{{ shopItem.description }}</p>
-               <div class="d-flex justify-content-between align-items-center">
-                 <div class="btn-group">
-                   <button type="button" class="btn btn-sm btn-outline-danger" (click)="onDelete()">Usuń</button>
-                 </div>
-               </div>
-             </div>
-           </div>
-         </div>
-       </div>
-     </div>
+    <div class="album py-5 bg-body-tertiary d-flex p-2 justify-content-between">
+      <div class="container">
+        <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 g-3">
+          <div class="card shadow-sm">
+            <div class="container">
+              <div class="row gallery justify-content-md-center" photoGalleryGroup>
+                <div class="col-lg-5 col-md-12 mb-4 mb-lg-0" *ngFor="let img of shopItem.images">
+                  <div class="images-item w-100 shadow-1-strong rounded mb-4" [photoGallery]="img.imageUri">
+                    <img class="img-fluid" [src]="img.imageUri" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <h3 class="card-text">{{ shopItem.name }}</h3>
+              <p class="card-text">{{ shopItem.description }}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-danger" (click)="onDelete()">Usuń</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

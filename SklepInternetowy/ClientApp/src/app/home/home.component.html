@@ -1,7 +1,7 @@
 <div *ngIf="authService.isLoggedIn">
   <button class="btn btn-outline-primary" [routerLink]="['/mainpage-management']">Zarządzanie stroną główną</button>
 </div>
-<div class="container marketing">
+<div class="container marketing min-vh-100">
   <ng-container *ngFor="let article of articles; index as i">
     <div class="row featurette" *ngIf="i % 2 == 0">
       <div class="col-md-7">

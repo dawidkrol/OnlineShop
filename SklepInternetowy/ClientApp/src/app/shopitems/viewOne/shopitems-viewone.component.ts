@@ -66,4 +66,8 @@ export class ShopitemsViewOneComponent {
     this.folded = false;
   }
 
+  close() {
+    this.folded = true;
+  }
+
 }
