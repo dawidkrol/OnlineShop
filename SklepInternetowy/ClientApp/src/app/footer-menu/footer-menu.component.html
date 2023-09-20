@@ -1,0 +1,17 @@
+<footer class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light mt-2 sticky-bottom">
+    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-center border-top mt-2">
+      <ul class="navbar-nav flex-grow">
+        <li class="nav-item"
+            [routerLinkActive]="['link-active']">
+
+          <a class="nav-link text-dark" [routerLink]="['/sign-in']">Panel logowania</a>
+        </li>
+        <li class="nav-item" [routerLinkActive]="['link-active']">
+          <a class="nav-link text-dark" [routerLink]="['/statute']">Regulamin</a>
+        </li>
+        <li class="nav-item" [routerLinkActive]="['link-active']">
+          <a class="nav-link text-dark" [routerLink]="['/privacy-policy']">Plityka prywatności</a>
+        </li>
+      </ul>
+    </div>
+</footer>

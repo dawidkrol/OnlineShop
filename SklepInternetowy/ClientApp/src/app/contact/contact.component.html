@@ -1,7 +1,9 @@
-<div  *ngIf="authService.isLoggedIn">
-  <button class="btn btn-outline-primary" [routerLink]="['/contactinfo-management']">Zarządzanie informacjami</button>
-</div>
-<br />
-<div *ngFor="let info of service.contactinfos">
-  <label>{{info.title}} : {{info.value}}</label>
+<div class="min-vh-100">
+  <div *ngIf="authService.isLoggedIn">
+    <button class="btn btn-outline-primary" [routerLink]="['/contactinfo-management']">Zarządzanie informacjami</button>
+  </div>
+  <br />
+  <div *ngFor="let info of service.contactinfos">
+    <label>{{info.title}} : {{info.value}}</label>
+  </div>
 </div>

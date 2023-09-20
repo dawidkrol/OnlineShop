@@ -29,6 +29,10 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { AuthGuard } from './shared/services/AuthGuard';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StatuteComponent } from './statute/statute.component';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { FooterMenuComponent } from './footer-menu/footer-menu.component';
 
 //// Initialize Firebase
 const app = initializeApp(environment.firebase);
@@ -38,6 +42,7 @@ const storage = getStorage(app);
   declarations: [
     AppComponent,
     NavMenuComponent,
+    FooterMenuComponent,
     HomeComponent,
     ShopitemsComponent,
     ShopitemsEditComponent,
@@ -51,8 +56,11 @@ const storage = getStorage(app);
     SignUpComponent,
     ForgotPasswordComponent,
     ShopitemsViewOneComponent,
+    StatuteComponent,
+    PrivacyPolicyComponent
   ],
   imports: [
+    PdfViewerModule,
     MatCarouselModule,
     PhotoGalleryModule,
     CommonModule,
@@ -74,7 +82,9 @@ const storage = getStorage(app);
       { path: 'contactinfo-management', component: ContactinfoManagementComponent, canActivate: [AuthGuard] },
       { path: 'sign-in', component: SignInComponent },
       { path: 'register-user', component: SignUpComponent },
-      { path: 'forgot-password', component: ForgotPasswordComponent }
+      { path: 'forgot-password', component: ForgotPasswordComponent },
+      { path: 'statute', component: StatuteComponent },
+      { path: 'privacy-policy', component: PrivacyPolicyComponent}
     ]),
     BrowserAnimationsModule
   ],
