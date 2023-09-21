@@ -2,16 +2,16 @@
   <div>
     <div>
       <div *ngFor="let info of service.contactinfos">
-        <input type="text" [(ngModel)]="info.title" /> :
-        <input type="text" [(ngModel)]="info.value" />
-        <button class="btn btn-outline-warning" (click)="service.update(info)">Edytuj</button>
-        <button class="btn btn-outline-danger" (click)="service.delete(info.id)">Usuń</button>
+        <input type="text" class="w-25 m-1" [(ngModel)]="info.title" /> :
+        <input type="text" class="w-25 m-1" [(ngModel)]="info.value" />
+        <button class="btn btn-outline-warning m-1" (click)="service.update(info)">Edytuj</button>
+        <button class="btn btn-outline-danger m-1" (click)="service.delete(info.id)">Usuń</button>
         <br />
       </div>
       <div>
-        <input type="text" [(ngModel)]="service.newContactInfo.title" /> :
-        <input type="text" [(ngModel)]="service.newContactInfo.value" />
-        <button class="btn btn-outline-success" (click)="service.add()">Dodaj</button>
+        <input type="text" class="w-25 m-1" [(ngModel)]="service.newContactInfo.title" /> :
+        <input type="text" class="w-25 m-1" [(ngModel)]="service.newContactInfo.value" />
+        <button class="btn btn-outline-success m-1" (click)="service.add()">Dodaj</button>
       </div>
     </div>
   </div>

@@ -1,26 +1,26 @@
 <div class="container text-center min-vh-100">
   <div class="row">
-    <div class="col-8">
+    <div class="col-lg-6 order-lg-2 mb-4">
+      <div>
+        <h1 class="text-center">{{item.name}}</h1>
+      </div>
+      <div class="text-left text-break" [innerHTML]="item.description">
+        <!--<label>{{item.description}}</label>-->
+      </div>
+      <!--<div style="background-color: yellow; margin: auto; text-align:center;">
+        {{item.category.name}}
+      </div>-->
+    </div>
+    <div class="col-lg-6 order-lg-1">
       <div class="container">
         <div class="row gallery justify-content-md-center" photoGalleryGroup>
-          <div class="col-lg-5 col-md-12 mb-4 mb-lg-0" *ngFor="let img of item.images">
+          <div class="col-lg-6 col-md-3 mb-4 mb-lg-0" *ngFor="let img of item.images">
             <div class="images-item w-100 shadow-1-strong rounded mb-4" [photoGallery]="img.imageUri">
               <img class="img-fluid" [src]="img.imageUri" />
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="col-4">
-      <div>
-        <h1>{{item.name}}</h1>
-      </div>
-      <div>
-        <label>{{item.description}}</label>
-      </div>
-      <!--<div style="background-color: yellow; margin: auto; text-align:center;">
-        {{item.category.name}}
-      </div>-->
     </div>
   </div>
   <button type="submit" *ngIf="folded == true" class="btn btn-outline-secondary m-5" (click)="open()">Zapytaj sprzedawcę o szczegóły<br /><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-down" viewBox="0 0 16 16">
@@ -34,7 +34,7 @@
   <div class="row mt-5 mb-5" *ngIf="folded == false">
     <div class="container">
       <form>
-        <div class="row mb-3 w-50">
+        <div class="row mb-3 mw-50">
           <input name="title" class="form-control form-control-lg" type="text" placeholder="Tytuł" aria-label=".form-control-lg example" [(ngModel)]="email.title" maxlength="50" required>
         </div>
 
@@ -42,8 +42,8 @@
           <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="4" [(ngModel)]="email.body" size="30" required></textarea>
         </div>
 
-        <div class="row mb-3 w-25">
-          <input name="email" type="email" placeholder="Twój email" class="form-control form-control-lg" [(ngModel)]="email.sender" required />
+        <div class="row mb-3 mw-25">
+          <input name="email" type="email" placeholder="Twój adres email" class="form-control form-control-lg" [(ngModel)]="email.sender" required />
         </div>
 
         <button type="submit" class="btn btn-outline-primary" (click)="sendEmail()">Wyślij email</button>
