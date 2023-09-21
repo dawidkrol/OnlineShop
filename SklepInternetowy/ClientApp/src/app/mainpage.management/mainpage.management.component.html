@@ -4,7 +4,9 @@
   <ng-container *ngFor="let article of service.articles; index as i">
     <div class="row featurette">
       <div class="col-md-7">
-        <h2 class="featurette-heading fw-normal lh-1"><input class="text-body-secondary" type="text" [(ngModel)]="article.title" /></h2>
+        <label class="form-label">Tytuł</label>
+        <h4 class="featurette-heading fw-normal lh-1 p-2"><input class="text-body-secondary" type="text" [(ngModel)]="article.title" /></h4>
+        <label class="form-label">Opis (html)</label>
         <textarea class="form-control mb-2 mr-2" type="text" [(ngModel)]="article.description"></textarea>
       </div>
       <div class="col-md-5">
@@ -14,10 +16,18 @@
         </div>
 
         <div class="card-group">
-            <button class="btn btn-outline-danger" (click)="service.onDeleteImg(article.id)">X</button>
-            <img src="{{article.imageUrl}}" class="card-img-top">
+          <button class="btn btn-outline-danger" (click)="service.onDeleteImg(article.id)">X</button>
+          <img src="{{article.imageUrl}}" class="card-img-top">
         </div>
       </div>
+      <!--<div class="col-md-7">
+        <label class="form-label">Link</label>
+        <input class="form-control mb-2 mr-2" type="text" [(ngModel)]="article.link" />
+        <label class="form-label">Text linku</label>
+        <input class="form-control mb-2 mr-2" type="text" [(ngModel)]="article.linkText" />
+      </div>-->
+    </div>
+    <div class="btn-group">
       <button class="btn btn-outline-warning" (click)="service.update(article)">Edytuj</button>
       <button class="btn btn-outline-danger" (click)="service.delete(article.id)">Usuń</button>
     </div>
@@ -27,8 +37,10 @@
   <!-- Adding section -->
   <div class="row featurette">
     <div class="col-md-7">
-      <h2 class="featurette-heading fw-normal lh-1"><input class="text-body-secondary" type="text" [(ngModel)]="service.newArticle.title" /></h2>
-      <textarea type="text" [(ngModel)]="service.newArticle.description"></textarea>
+      <label class="form-label">Tytuł</label>
+      <h4 class="featurette-heading fw-normal lh-1"><input class="text-body-secondary" type="text" [(ngModel)]="service.newArticle.title" /></h4>
+      <label class="form-label">Opis (html)</label>
+      <textarea type="text" class="form-control mb-2 mr-2" [(ngModel)]="service.newArticle.description"></textarea>
     </div>
     <div class="col-md-5">
       <div class="input-group">
@@ -41,7 +53,13 @@
         <img src="{{service.newArticle.imageUrl}}" class="card-img-top">
       </div>
     </div>
+    <!--<div class="col-md-7">
+      <label class="form-label">Link</label>
+      <input class="form-control mb-2 mr-2" type="text" [(ngModel)]="service.newArticle.link" />
+      <label class="form-label">Text linku</label>
+      <input class="form-control mb-2 mr-2" type="text" [(ngModel)]="service.newArticle.linkText" />
+    </div>-->
   </div>
-  <button class="btn btn-outline-success" (click)="service.add()">Dodaj artykuł</button>
+    <button class="btn btn-outline-success" (click)="service.add()">Dodaj artykuł</button>
   <br />
 </div>

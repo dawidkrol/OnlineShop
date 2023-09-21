@@ -1,3 +1,13 @@
+<figure class="text-center bg-white border-bottom box-shadow pb-3 mb-4">
+  <blockquote  class="blockquote font-italic font-weight-light ml-3">
+    „W gruncie rzeczy nie trzeba być
+    w czymś najlepszym,
+    wystarczy, że się to kocha.” 
+  </blockquote>
+  <figcaption  class="blockquote-footer text-right mr-5">
+    Sue Monk Kidd
+  </figcaption>
+</figure>
 <div *ngIf="authService.isLoggedIn">
   <button class="btn btn-outline-primary" [routerLink]="['/mainpage-management']">Zarządzanie stroną główną</button>
 </div>
@@ -5,9 +15,14 @@
   <ng-container *ngFor="let article of articles; index as i">
     <div class="row featurette" *ngIf="i % 2 == 0">
       <div class="col-md-7">
-        <h2 class="featurette-heading fw-normal lh-1"><span class="text-body-secondary">{{article.title}}</span></h2>
-        <p class="lead">{{article.description}}</p>
-      </div>
+        <!--<div class="">-->
+            <h2 class="featurette-heading fw-normal lh-1"><span class="text-body-secondary">{{article.title}}</span></h2>
+            <div [innerHTML]="article.description"></div>
+          <!--</div>-->
+          <!--<div class="align-bottom">
+            <a class="" *ngIf="article.link != '' && article.linkText != ''" [href]="article.link">{{article.linkText}}</a>
+          </div>-->
+        </div>
       <div class="col-md-5">
         <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="{{article.imageUrl}}" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
       </div>

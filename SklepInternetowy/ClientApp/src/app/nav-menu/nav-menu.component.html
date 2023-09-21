@@ -6,21 +6,17 @@
       <a class="navbar-brand" [routerLink]="['/']">
         <img height="70" src="https://firebasestorage.googleapis.com/v0/b/monali-32546.appspot.com/o/LOGO%2Fmonali-logo.png?alt=media&token=32ea90e2-1880-49aa-8993-b5da262a7654" />
       </a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target=".navbar-collapse"
-        aria-label="Toggle navigation"
-        [attr.aria-expanded]="isExpanded"
-        (click)="toggle()"
-      >
+      <button class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target=".navbar-collapse"
+              aria-label="Toggle navigation"
+              [attr.aria-expanded]="isExpanded"
+              (click)="toggle()">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div
-        class="navbar-collapse collapse d-sm-inline-flex justify-content-end"
-        [ngClass]="{ show: isExpanded }"
-      >
+      <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end"
+           [ngClass]="{ show: isExpanded }">
         <ul class="navbar-nav flex-grow">
           <li class="nav-item"
               [routerLinkActive]="['link-active']"
@@ -38,8 +34,8 @@
             <a class="nav-link text-dark" (click)="authService.SignOut()">Wyloguj</a>
           </li>
           <!--<li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="!authService.isLoggedIn">
-            <a class="nav-link text-dark" [routerLink]="['/sign-in']">SignIn</a>
-          </li>-->
+        <a class="nav-link text-dark" [routerLink]="['/sign-in']">SignIn</a>
+      </li>-->
         </ul>
       </div>
     </div>

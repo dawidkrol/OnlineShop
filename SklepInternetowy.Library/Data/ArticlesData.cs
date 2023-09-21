@@ -65,6 +65,8 @@ namespace OnlineShop.Library.Data
             item.ImageUrl = model.ImageUrl;
             item.Description = model.Description;
             item.IsActive = model.IsActive;
+            item.Link = model.Link;
+            item.LinkText = model.LinkText;
 
             await _shopContext.SaveChangesAsync();
         }

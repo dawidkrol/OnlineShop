@@ -5,4 +5,6 @@ export interface ArticleModel {
   imageUrl: string;
   createDate: Date;
   isActive: boolean;
+  link: string;
+  linkText: string;
 }

@@ -30,7 +30,6 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { AuthGuard } from './shared/services/AuthGuard';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StatuteComponent } from './statute/statute.component';
-import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { FooterMenuComponent } from './footer-menu/footer-menu.component';
 
@@ -60,7 +59,6 @@ const storage = getStorage(app);
     PrivacyPolicyComponent
   ],
   imports: [
-    PdfViewerModule,
     MatCarouselModule,
     PhotoGalleryModule,
     CommonModule,
@@ -93,6 +91,7 @@ const storage = getStorage(app);
   exports: [
     CommonModule
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule {
 }

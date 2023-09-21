@@ -40,7 +40,23 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\_redirects" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\SklepInternetowy.Library\OnlineShop.Library.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="ClientApp\src\_redirects">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="ClientApp\dist\3rdpartylicenses.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
@@ -55,7 +71,7 @@
   
   <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
     <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
-    <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm install --force" />
     <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build -- --configuration production" />
 
     <!-- Include the newly-built files in the publish output -->

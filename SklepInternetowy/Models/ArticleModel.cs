@@ -8,5 +8,7 @@
         public string ImageUrl { get; set; }
         public DateTime CreateDate { get; set; } = DateTime.Now;
         public bool IsActive { get; set; }
+        public string Link { get; set; }
+        public string LinkText { get; set; }
     }
 }
