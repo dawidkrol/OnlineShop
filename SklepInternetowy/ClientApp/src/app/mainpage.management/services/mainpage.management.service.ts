@@ -145,16 +145,15 @@ export class MainpageManagementService {
       },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          var art = this.newArticle;
-          if (art.imageUrl != "") {
+          if (this.newArticle.imageUrl != "") {
             try {
-              this.deleteIMG(art.imageUrl);
+              this.deleteIMG(this.newArticle.imageUrl);
             }
             catch {
               console.log('Deleting error');
             }
           }
-          art.imageUrl = downloadURL;
+          this.newArticle.imageUrl = downloadURL;
         });
       }
     );

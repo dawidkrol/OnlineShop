@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ShopItemsModel } from '../../classes/ShopItemsModel'
 import { EmailModel } from '../../classes/EmailModel';
@@ -8,6 +8,7 @@ import { ShopitemssectionService } from '../../shared/services/shopitemssection.
 @Component({
   selector: 'app-shopitems-viewone',
   templateUrl: './shopitems-viewone.component.html',
+  encapsulation: ViewEncapsulation.None,
 })
 
 export class ShopitemsViewOneComponent {

@@ -32,6 +32,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StatuteComponent } from './statute/statute.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { FooterMenuComponent } from './footer-menu/footer-menu.component';
+import { SafeHtmlPipe } from './safe-html.pipe';
 
 //// Initialize Firebase
 const app = initializeApp(environment.firebase);
@@ -39,6 +40,7 @@ const storage = getStorage(app);
 
 @NgModule({
   declarations: [
+    SafeHtmlPipe,
     AppComponent,
     NavMenuComponent,
     FooterMenuComponent,
