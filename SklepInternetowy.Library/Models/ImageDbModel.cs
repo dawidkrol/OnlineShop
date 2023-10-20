@@ -9,6 +9,7 @@ namespace SklepInternetowy.Library.Models
     public class ImageDbModel
     {
         public Guid Id { get; set; }
+        public int OrderNumber { get; set; }
         public string ImageUri { get; set; }
         public ShopItemDbModel ShopItem { get; set; }
     }

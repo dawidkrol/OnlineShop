@@ -16,9 +16,11 @@ export class ShopitemsComponent {
   public shopitems: ShopItemsModel[] = [];
   public categories: CategoryModel[] = [];
   public filterCategoryId: string = "";
+  public loadingItems = false;
+  public loadingCategory = false;
+  public loadingFiltering = false;
 
   constructor(private router: Router, public authService: AuthService, private service: ShopitemssectionService, private categoryService: CategorysectionService) {
-
     this.getItems();
     this.getCategories();
   }
@@ -40,23 +42,38 @@ export class ShopitemsComponent {
   }
 
   getItems() {
+    this.loadingItems = true;
     this.service.get().subscribe(result => {
       this.shopitems = result;
-    }, error => console.error(error));
+      this.loadingItems = false;
+    }, error => {
+      console.error(error);
+      this.loadingItems = false;
+    });
   }
 
   getCategories() {
+    this.loadingCategory = true;
     this.categoryService.loadCategories().subscribe(result => {
       this.categories = result;
-    }, error => console.error(error));
+      this.loadingCategory = false;
+    }, error => {
+      console.error(error);
+      this.loadingCategory = false;
+    });
   }
 
   filter() {
+    this.loadingFiltering = true;
     this.service.get().subscribe(result => {
       this.shopitems = result;
       if (this.filterCategoryId != "") {
         this.shopitems = this.shopitems.filter(x => x.category.map(x => x.id).includes(this.filterCategoryId));
       }
-    }, error => console.error(error));
+      this.loadingFiltering = false;
+    }, error => {
+      console.error(error);
+      this.loadingFiltering = false;
+    });
   }
 }

@@ -11,15 +11,24 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class HomeComponent {
   public articles: ArticleModel[] = [];
+  public loading = false;
 
   constructor(public service: MainpagesectionService, public authService: AuthService, private sanitizer: DomSanitizer) {
     this.loadArticles();
   }
 
+
   loadArticles() {
+    this.loading = true;
     this.service.loadArticles().subscribe(result => {
       this.articles = result;
-    }, error => console.error(error));
+      this.loading = false;
+    },
+      error =>
+    {
+      console.error(error);
+      this.loading = false;
+    });
   }
 
   safeHTML(str: string) {

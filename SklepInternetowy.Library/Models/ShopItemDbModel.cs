@@ -4,6 +4,7 @@
     {
         public Guid Id { get; set; }
         public Guid OwnerId { get; set; }
+        public int OrderNumber { get; set; }
         public string Name { get; set; }
         public IEnumerable<Guid> CategoryIds { get; set; }
         public string Description { get; set; }

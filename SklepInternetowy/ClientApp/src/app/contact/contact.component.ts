@@ -8,10 +8,13 @@ import { ContactService } from './service/contact.service';
   styleUrls: ['./contact.component.css']
 })
 export class ContactComponent implements OnInit {
+  public loading = false;
 
   constructor(public service: ContactService, public authService: AuthService)
   {
+    this.loading = true;
     service.loadContactInfo();
+    this.loading = false;
   }
 
   ngOnInit(): void {

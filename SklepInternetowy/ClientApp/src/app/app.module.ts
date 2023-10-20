@@ -34,6 +34,8 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
 import { FooterMenuComponent } from './footer-menu/footer-menu.component';
 import { SafeHtmlPipe } from './safe-html.pipe';
 
+import { NgxLoadingModule } from "ngx-loading";
+
 //// Initialize Firebase
 const app = initializeApp(environment.firebase);
 const storage = getStorage(app);
@@ -61,6 +63,7 @@ const storage = getStorage(app);
     PrivacyPolicyComponent
   ],
   imports: [
+    NgxLoadingModule.forRoot({}),
     MatCarouselModule,
     PhotoGalleryModule,
     CommonModule,
