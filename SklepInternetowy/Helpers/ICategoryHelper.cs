@@ -8,5 +8,6 @@ namespace OnlineShop.Helpers
         Task AddCategory(CategoryModel category);
         Task RemoveCategory(Guid id);
         Task EditCategory(CategoryModel category);
+        Task SetOrder(IEnumerable<CategoryModel> categories);
     }
 }

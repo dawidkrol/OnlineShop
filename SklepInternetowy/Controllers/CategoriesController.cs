@@ -36,6 +36,14 @@ namespace OnlineShop.Controllers
         {
             _categoryHelper.EditCategory(model);
         }
+
+        [Authorize]
+        [HttpPut("setcategoryorder")]
+        public async Task SetCategoryOrder(IEnumerable<CategoryModel> models)
+        {
+            await _categoryHelper.SetOrder(models);
+        }
+
         [Authorize]
         [HttpDelete]
         public async Task<IActionResult> DeleteCategory(Guid id)

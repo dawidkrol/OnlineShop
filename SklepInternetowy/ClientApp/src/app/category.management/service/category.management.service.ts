@@ -29,6 +29,8 @@ export class CategoryManagementService {
   loadCategories() {
     this.service.loadCategories().subscribe(result => {
       this.categories = result;
+      this.sort();
+      console.log(result);
     });
   }
 
@@ -49,6 +51,42 @@ export class CategoryManagementService {
         this.newCategory = {} as CategoryModel;
       }
     }
+    );
+  }
+
+  setorder(categories: CategoryModel[]) {
+    this.service.setorder(categories).subscribe(
+      {
+        complete: () => {
+          this.loadCategories();
+        },
+      }
+    );
+  }
+
+  orderUp(category: CategoryModel) {
+    this.categories.find(x => x.orderNumber == (category.orderNumber - 1)).orderNumber += 1;
+    this.categories.find(x => x.id == category.id).orderNumber -= 1;
+    this.sort();
+  }
+
+  orderDown(category: CategoryModel) {
+    this.categories.find(x => x.orderNumber == (category.orderNumber + 1)).orderNumber -= 1;
+    this.categories.find(x => x.id == category.id).orderNumber += 1;
+    this.sort();
+  }
+
+  sort() {
+    this.categories = this.categories.sort((a, b) => a.orderNumber - b.orderNumber);
+  }
+
+  saveOrder() {
+    this.service.setorder(this.categories).subscribe(
+      {
+        complete: () => {
+          this.loadCategories();
+        },
+      }
     );
   }
 }

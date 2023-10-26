@@ -1,10 +1,23 @@
 <div class="container min-vh-100">
   <div>
-      <div *ngFor="let category of categoryService.categories">
-        <input type="text" class="w-25 m-1" [(ngModel)]="category.name" />
-        <button class="btn btn-outline-warning m-1" (click)="categoryService.edit(category)">Edytuj</button>
-        <button class="btn btn-outline-danger m-1" (click)="categoryService.delete(category.id)">Usuń</button>
-      </div>
+    <div *ngFor="let category of categoryService.categories" class="d-flex m-2">
+      <input type="text" class="w-25 m-1" [(ngModel)]="category.name" />
+      <button class="btn btn-outline-warning m-1" (click)="categoryService.edit(category)">Edytuj</button>
+      <button class="btn btn-outline-danger m-1" (click)="categoryService.delete(category.id)">Usuń</button>
+      <section class="d-flex flex-column">
+        <button class="btn btn-outline-primary btn-sm" (click)="categoryService.orderUp(category)" [disabled]="categoryService.categories[0].orderNumber == category.orderNumber">
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" />
+          </svg>
+        </button>
+        <button class="btn btn-outline-primary btn-sm" (click)="categoryService.orderDown(category)" [disabled]="categoryService.categories[categoryService.categories.length - 1].orderNumber == category.orderNumber">
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-arrow-down" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z" />
+          </svg>
+        </button>
+      </section>
+    </div>
+    <button class="btn btn-outline-warning m-1" (click)="categoryService.saveOrder()">Zapisz kolejność</button>
       <div>
         <input type="text" class="w-25 m-1" [(ngModel)]="categoryService.newCategory.name" />
         <button class="btn btn-outline-success m-1" (click)="categoryService.add()">+</button>

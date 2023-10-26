@@ -9,5 +9,6 @@ namespace OnlineShop.Library.Data
         IEnumerable<CategoryDbModel> GetCategories();
         Task UpdateCategoryAsync(CategoryDbModel category);
         CategoryDbModel GetCategory(Guid id);
+        Task SetOrder(IEnumerable<CategoryDbModel> categories);
     }
 }

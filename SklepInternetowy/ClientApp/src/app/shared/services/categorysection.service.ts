@@ -53,4 +53,17 @@ export class CategorysectionService {
     console.log(body);
     return this.http.post(this.baseUrl + 'categories', body, { headers: headers });
   }
+
+  setorder(categories: CategoryModel[]) {
+    var token = this.authService.getToken;
+    let headers = new HttpHeaders(
+      {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ' + token
+      });
+    const body = JSON.stringify(categories);
+    console.log(body);
+    return this.http.put(this.baseUrl + 'categories/setcategoryorder', body, { headers: headers });
+  }
 }

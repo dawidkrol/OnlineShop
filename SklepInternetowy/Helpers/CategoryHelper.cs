@@ -45,5 +45,11 @@ namespace OnlineShop.Helpers
             var model = _mapper.Map<CategoryDbModel>(category);
             await _categoryData.UpdateCategoryAsync(model);
         }
+
+        public async Task SetOrder(IEnumerable<CategoryModel> categories)
+        {
+            var model = _mapper.Map<IEnumerable<CategoryDbModel>>(categories);
+            await _categoryData.SetOrder(model);
+        }
     }
 }
