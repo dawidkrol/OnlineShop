@@ -22,6 +22,7 @@ export class ShopitemsAddComponent  {
   constructor(public service: ShopitemssectionService, private router: Router, private categoryService: CategorysectionService) {
     this.categoryService.loadCategories().subscribe(result => {
       this.categories = result;
+      this.sort();
     }, error => console.error(error));
   }
 
@@ -56,11 +57,17 @@ export class ShopitemsAddComponent  {
       },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          let lastNumber = 0;
+          if (this.imageModels.length > 0) {
+            this.sort();
+            lastNumber = this.imageModels[0].orderNumber + 1;
+          }
           this.loading = false;
           var img = {} as ImageModel;
           img.imageUri = downloadURL;
+          img.orderNumber = lastNumber;
           this.imageModels.push(img);
-          console.log('File available at', downloadURL);
+          this.sort();
         });
       }
     );
@@ -88,8 +95,8 @@ export class ShopitemsAddComponent  {
     deleteObject(rr);
 
     this.imageModels = this.imageModels.filter(x => x.imageUri !== url);
-
-    console.log(this.imageModels);
+    this.checkNumbers();
+    this.sort();
   }
 
   pushCheckBoxValue(event: any, value: any) {
@@ -104,6 +111,31 @@ export class ShopitemsAddComponent  {
         }
       })
     }
-    console.log(this.selectedCategories);
+  }
+
+  orderDown(orderNumber: number) {
+    let actual = this.imageModels.find(x => x.orderNumber == orderNumber);
+    let prev = this.imageModels.find(x => x.orderNumber == (actual.orderNumber - 1));
+    prev.orderNumber += 1;
+    actual.orderNumber -= 1;
+    this.sort();
+  }
+
+  orderUp(orderNumber: number) {
+    let actual = this.imageModels.find(x => x.orderNumber == orderNumber);
+    let next = this.imageModels.find(x => x.orderNumber == (actual.orderNumber + 1));
+    next.orderNumber -= 1;
+    actual.orderNumber += 1;
+    this.sort();
+  }
+
+  sort() {
+    this.imageModels = this.imageModels.sort((a, b) => b.orderNumber - a.orderNumber);
+  }
+
+  checkNumbers() {
+    for (let i = 0; i < this.imageModels.length; i += 1) {
+      this.imageModels[this.imageModels.length - 1 - i].orderNumber = i;
+    }
   }
 }

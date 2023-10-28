@@ -6,6 +6,7 @@ import { AuthService } from '../../shared/services/auth.service';
 import { ShopitemssectionService } from '../../shared/services/shopitemssection.service';
 import { CategorysectionService } from '../../shared/services/categorysection.service';
 import { MatCarousel, MatCarouselComponent } from '@thouet/material-carousel';
+import { ImageModel } from '../../classes/ImageModel';
 
 @Component({
   selector: 'app-shopitems',
@@ -23,6 +24,10 @@ export class ShopitemsComponent {
   constructor(private router: Router, public authService: AuthService, private service: ShopitemssectionService, private categoryService: CategorysectionService) {
     this.getItems();
     this.getCategories();
+  }
+
+  sort(table: ImageModel[]) {
+    return table.sort((a, b) => b.orderNumber - a.orderNumber);
   }
 
   goToAdd() {

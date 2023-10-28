@@ -36,6 +36,7 @@ export class ShopitemsEditComponent {
     this.service.getItemById(this._id).subscribe(result => {
       this.item = result;
       this.item.category.forEach(x => this.selectedCategories.push(x.id));
+      this.sort();
     }, error => console.error(error));
   }
 
@@ -78,10 +79,17 @@ export class ShopitemsEditComponent {
       },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          let lastNumber = 0;
+          if (this.item.images.length > 0) {
+            this.sort();
+            lastNumber = this.item.images[0].orderNumber + 1;
+          }
           this.loading = false;
           var img = {} as ImageModel;
           img.imageUri = downloadURL;
+          img.orderNumber = lastNumber;
           this.item.images.push(img);
+          this.sort();
           console.log('File available at', downloadURL);
         });
       }
@@ -94,8 +102,8 @@ export class ShopitemsEditComponent {
     deleteObject(rr);
 
     this.item.images = this.item.images.filter(x => x.imageUri !== url);
-
-    console.log(this.item.images);
+    this.checkNumbers();
+    this.sort();
   }
 
   pushCheckBoxValue(event: any, value: any) {
@@ -118,5 +126,35 @@ export class ShopitemsEditComponent {
       return false;
     }
     return this.item.categoryIds.some(x => x == id);
+  }
+
+  orderDown(orderNumber: number) {
+    let actual = this.item.images.find(x => x.orderNumber == orderNumber);
+    let prev = this.item.images.find(x => x.orderNumber == (actual.orderNumber - 1));
+    prev.orderNumber += 1;
+    actual.orderNumber -= 1;
+    this.sort();
+  }
+
+  orderUp(orderNumber: number) {
+    console.log(orderNumber);
+    let actual = this.item.images.find(x => x.orderNumber == orderNumber);
+    let next = this.item.images.find(x => x.orderNumber == (actual.orderNumber + 1));
+    console.log(actual);
+    console.log(next);
+    next.orderNumber -= 1;
+    actual.orderNumber += 1;
+    this.sort();
+  }
+
+  sort() {
+    this.item.images = this.item.images.sort((a, b) => b.orderNumber - a.orderNumber);
+  }
+
+  checkNumbers() {
+    for (let i = 0; i < this.item.images.length; i += 1)
+    {
+      this.item.images[this.item.images.length - 1 - i].orderNumber = i;
+    }
   }
 }

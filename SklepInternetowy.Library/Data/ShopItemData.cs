@@ -17,7 +17,7 @@ namespace OnlineShop.Library.Data
         {
             return _shopContext.ShopItems
                             .Where(x => x.IsDeleted == false)
-                            .Include(x => x.Images)
+                            .Include(x => x.Images.OrderBy(x => x.OrderNumber))
                             //.Include(x => x.Category)
                             .OrderByDescending(x => x.LastUpdateDate)
                             .AsEnumerable();
@@ -26,7 +26,7 @@ namespace OnlineShop.Library.Data
         {
             var data = _shopContext.ShopItems
                             .Where(x => x.IsDeleted == false)
-                            .Include(x => x.Images)
+                            .Include(x => x.Images.OrderBy(x => x.OrderNumber))
                             //.Include(x => x.Category)
                             .First(x => x.Id == id);
 

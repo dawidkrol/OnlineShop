@@ -27,6 +27,7 @@ export class ShopitemsViewOneComponent {
 
     this.service.getItemById(this._id).subscribe(result => {
       this.item = result;
+      this.sort();
     }, error => console.error(error));
   }
 
@@ -69,6 +70,10 @@ export class ShopitemsViewOneComponent {
 
   close() {
     this.folded = true;
+  }
+
+  sort() {
+    this.item.images = this.item.images.sort((a, b) => b.orderNumber - a.orderNumber);
   }
 
 }

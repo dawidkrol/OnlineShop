@@ -33,17 +33,29 @@
     <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" (click)="onUpload()">Prześlij</button>
   </div>
 
-  <div class="card-group row-cols-1 row-cols-md-4">
+  <div class="d-flex flex-row flex-wrap">
     <div class="card" *ngFor="let img of imageModels">
-      <button class="btn btn-outline-danger" (click)="onDeleteImg(img.imageUri)">X</button>
-      <img src="{{img.imageUri}}" class="card-img-top">
+      <button class="btn btn-outline-danger" (click)="onDeleteImg(img.imageUri)">Usuń</button>
+      <img [src]="img.imageUri" class="card-img-top" height="300" width="200">
+      <section class="d-flex flex-row justify-content-between">
+        <button class="btn btn-outline-primary btn-lg pb-0 pt-0" (click)="orderUp(img.orderNumber)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+          </svg>
+        </button>
+        <button class="btn btn-outline-primary btn-lg pb-0 pt-0" (click)="orderDown(img.orderNumber)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+          </svg>
+        </button>
+      </section>
     </div>
-  </div>
-
-  <div class="container" *ngIf="loading">
-    <h3>Ładowanie ...</h3>
   </div>
 
   <br />
   <button class="btn btn-outline-success" (click)="onAddItem()">Dodaj</button>
-  </div>
+</div>
+
+
+<ngx-loading [show]="loading"
+             [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>
