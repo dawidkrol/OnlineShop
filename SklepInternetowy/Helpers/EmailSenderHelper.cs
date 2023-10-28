@@ -21,7 +21,7 @@ namespace OnlineShop.Helpers
                 Credentials = new NetworkCredential(email, password),
                 EnableSsl = true
             };
-            client.Send(model.Sender, email, model.Title, $"From: {model.Sender}\n" + $"About: {model.ProductUri}" + "\n\n" + model.Body);
+            client.Send(model.Sender, email, model.Title, $"Od: {model.Sender}\n" + $"Na temat: {model.ProductUri}" + "\n\n" + model.Body);
         }
     }
 }

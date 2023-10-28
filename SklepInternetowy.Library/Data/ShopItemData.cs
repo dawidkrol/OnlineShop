@@ -34,6 +34,27 @@ namespace OnlineShop.Library.Data
 
             return data;
         }
+        private async Task SetImgOrder()
+        {
+            var items = _shopContext.ShopItems
+                            .Include(x => x.Images.OrderBy(x => x.OrderNumber))
+                            .OrderByDescending(x => x.LastUpdateDate);
+
+            if (items != null)
+            {
+                foreach (var item in items)
+                {
+                    int i = item.Images.Count() - 1;
+                    foreach (var img in item.Images)
+                    {
+                        img.OrderNumber = i;
+                        i--;
+                    }
+                }
+                await _shopContext.SaveChangesAsync();
+            }
+        }
+
         public IEnumerable<ShopItemDbModel> GetShopItemsByCategoryId(Guid id)
         {
             return _shopContext.Categories.Single(x => x.Id == id)

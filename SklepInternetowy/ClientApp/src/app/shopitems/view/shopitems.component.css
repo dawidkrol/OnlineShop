@@ -1,0 +1,17 @@
+@media (min-width: 767px) {
+  .categorysection {
+    max-width: 25%;
+    min-width: 220px;
+  }
+}
+
+.categorysection {
+  min-width: 330px;
+}
+
+
+@media (max-width: 1200px) and (min-width: 767px) {
+  .shopitemName {
+    font-size: 20px;
+  }
+}

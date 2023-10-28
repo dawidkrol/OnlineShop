@@ -1,6 +1,6 @@
 <div class="container min-vh-100">
   <div class="row">
-    <div class="col-md-auto">
+    <div class="col-md-auto text-wrap categorysection">
 
       <ul class="list-unstyled mb-3" *ngIf="authService.isLoggedIn">
         <li class="media">
@@ -60,7 +60,7 @@
                     </mat-carousel-slide>
                   </mat-carousel>
                   <div class="card-body">
-                    <h3 class="card-text">{{ shopitem.name }}</h3>
+                    <h3 class="card-text shopitemName">{{ shopitem.name }}</h3>
                     <div class="d-flex justify-content-between align-items-center">
                       <div class="btn-group-sm mt-3">
                         <button type="button" class="btn btn-sm btn-outline-primary" (click)="goToView(shopitem.id)">Więcej</button>

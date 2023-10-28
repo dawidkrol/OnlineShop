@@ -75,8 +75,23 @@ namespace OnlineShop.Library.Data
             var item = _shopContext.Categories.Single(x => x.Id == categoryId);
             item.IsDeleted = true;
             item.OrderNumber = int.MaxValue;
-
             await _shopContext.SaveChangesAsync();
+            await checkOrderNumbers();
+        }
+
+        private async Task checkOrderNumbers()
+        {
+            var cat = _shopContext.Categories
+                        .Where(x => x.IsDeleted == false)
+                        .OrderBy(x => x.OrderNumber).ToArray();
+            if (cat != null)
+            {
+                for (int i = 0; i < cat.Count(); i++)
+                {
+                    cat[i].OrderNumber = i + 1;
+                }
+            }
+            await SetOrder(cat);
         }
 
         public async Task SetOrder(IEnumerable<CategoryDbModel> categories)
