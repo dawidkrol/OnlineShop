@@ -98,6 +98,7 @@
               "node_modules/bootstrap/dist/css/bootstrap.css",
               "src/styles.css",
               "node_modules/sweetalert2/src/sweetalert2.scss",
+              "../node_modules/font-awesome/css/font-awesome.css",
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/slick-carousel/slick/slick.min.js",
               "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.carousel.min.css",

@@ -57,12 +57,12 @@ export class ShopitemsAddComponent  {
       },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          this.loading = false;
           let lastNumber = 0;
           if (this.imageModels.length > 0) {
             this.sort();
             lastNumber = this.imageModels[0].orderNumber + 1;
           }
-          this.loading = false;
           var img = {} as ImageModel;
           img.imageUri = downloadURL;
           img.orderNumber = lastNumber;
