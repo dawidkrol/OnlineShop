@@ -13,6 +13,40 @@
 
       <article class="card-group-item">
         <header class="card-header">
+          <h6 class="title">Sortuj według: </h6>
+        </header>
+        <div class="filter-content">
+          <div class="card-body">
+            <form>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios1" id="exampleRadios1" (click)="sortValues(0)" checked>
+                <label class="form-check-label" for="exampleRadios1">
+                  Data dodania rosnąco
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios1" id="exampleRadios1" (click)="sortValues(1)">
+                <label class="form-check-label" for="exampleRadios1">
+                  Data dodania malejąco
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios1" id="exampleRadios1" (click)="sortValues(2)">
+                <label class="form-check-label" for="exampleRadios1">
+                  Alfabetycznie rosnąco
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios1" id="exampleRadios1" (click)="sortValues(3)">
+                <label class="form-check-label" for="exampleRadios1">
+                  Alfabetycznie malejąco
+                </label>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <header class="card-header">
           <h6 class="title">Kategorie</h6>
         </header>
         <div class="filter-content">

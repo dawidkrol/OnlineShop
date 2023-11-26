@@ -46,11 +46,45 @@ export class ShopitemsComponent {
     this.router.navigate(['/shopitems-viewone'], { queryParams: { itemsToViewId: par } });
   }
 
+  sortType_default: number = 0;
+
+  sortValues(sortType: number = null) {
+    if (sortType != null) {
+      this.sortType_default = sortType;
+    }
+    if (this.sortType_default == 0) {
+      this.sortValuesByDateAsc();
+    }
+    else if (this.sortType_default == 1) {
+      this.sortValuesByDateDesc();
+    }
+    else if (this.sortType_default == 2) {
+      this.sortValuesByNameAsc();
+    }
+    else if (this.sortType_default == 3) {
+      this.sortValuesByNameDesc();
+    }
+  }
+
+  sortValuesByDateAsc() {
+    this.shopitems.sort((a, b) => new Date(b.lastUpdateDate).getTime() - new Date(a.lastUpdateDate).getTime());
+  }
+  sortValuesByDateDesc() {
+    this.shopitems.sort((a, b) => new Date(a.lastUpdateDate).getTime() - new Date(b.lastUpdateDate).getTime());
+  }
+  sortValuesByNameAsc() {
+    this.shopitems.sort((a, b) => a.name.localeCompare(b.name));
+  }
+  sortValuesByNameDesc() {
+    this.shopitems.sort((a, b) => b.name.localeCompare(a.name));
+  }
+
   getItems() {
     this.loadingItems = true;
     this.service.get().subscribe(result => {
       this.shopitems = result;
       this.loadingItems = false;
+      this.sortValues();
     }, error => {
       console.error(error);
       this.loadingItems = false;
@@ -76,6 +110,7 @@ export class ShopitemsComponent {
         this.shopitems = this.shopitems.filter(x => x.category.map(x => x.id).includes(this.filterCategoryId));
       }
       this.loadingFiltering = false;
+      this.sortValues();
     }, error => {
       console.error(error);
       this.loadingFiltering = false;
