@@ -12,66 +12,88 @@
       </ul>
 
       <article class="card-group-item">
-        <header class="card-header">
-          <h6 class="title">Sortuj według: </h6>
-        </header>
-        <div class="filter-content">
-          <div class="card-body">
-            <form>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios1" id="exampleRadios1" (click)="sortValues(0)" checked>
-                <label class="form-check-label" for="exampleRadios1">
-                  Data dodania rosnąco
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios1" id="exampleRadios1" (click)="sortValues(1)">
-                <label class="form-check-label" for="exampleRadios1">
-                  Data dodania malejąco
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios1" id="exampleRadios1" (click)="sortValues(2)">
-                <label class="form-check-label" for="exampleRadios1">
-                  Alfabetycznie rosnąco
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios1" id="exampleRadios1" (click)="sortValues(3)">
-                <label class="form-check-label" for="exampleRadios1">
-                  Alfabetycznie malejąco
-                </label>
-              </div>
-            </form>
+        <button class="w-100 navbar-toggler"
+                type="button"
+                data-target=".ordering-collapse"
+                aria-label="Toggle navigation"
+                [attr.aria-expanded]="isExpandedCategories"
+                (click)="toggleCategoriesPart()">
+          <header class="w-100 card-header">
+            <h6 class="title">Sortuj według: </h6>
+          </header>
+        </button>
+        <div class="ordering-collapse collapse d-sm-inline-flex justify-content-end"
+             [ngClass]="{ show: isExpandedCategories }">
+          <div class="filter-content">
+            <div class="card-body">
+              <form>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="exampleRadios1" id="exampleRadios1" (click)="sortValues(0)" checked>
+                  <label class="form-check-label" for="exampleRadios1">
+                    Data dodania rosnąco
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="exampleRadios1" id="exampleRadios1" (click)="sortValues(1)">
+                  <label class="form-check-label" for="exampleRadios1">
+                    Data dodania malejąco
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="exampleRadios1" id="exampleRadios1" (click)="sortValues(2)">
+                  <label class="form-check-label" for="exampleRadios1">
+                    Alfabetycznie rosnąco
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="exampleRadios1" id="exampleRadios1" (click)="sortValues(3)">
+                  <label class="form-check-label" for="exampleRadios1">
+                    Alfabetycznie malejąco
+                  </label>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
 
-        <header class="card-header">
-          <h6 class="title">Kategorie</h6>
-        </header>
-        <div class="filter-content">
-          <div class="card-body">
-            <form>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios" [(ngModel)]="filterCategoryId" id="exampleRadios1" value="" (click)="filter()" checked>
-                <label class="form-check-label" for="exampleRadios1">
-                  Wszystkie kategorie
-                </label>
-              </div>
-              <div class="form-check" *ngFor="let category of categories">
-                <input class="form-check-input" type="radio" name="exampleRadios" [(ngModel)]="filterCategoryId" id="exampleRadios2" [value]="category.id" (click)="filter()">
-                <label class="form-check-label" for="exampleRadios2">
-                  {{category.name}}
-                </label>
-              </div>
-            </form>
+        <button class="w-100 navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target=".ordering-collapse"
+                aria-label="Toggle navigation"
+                [attr.aria-expanded]="isExpandedOrdering"
+                (click)="toggleOrderingPart()">
+          <header class="card-header">
+            <h6 class="title">Kategorie</h6>
+          </header>
+        </button>
+        <div class="ordering-collapse collapse d-sm-inline-flex justify-content-end"
+             [ngClass]="{ show: isExpandedOrdering }">
+          <div class="filter-content">
+            <div class="card-body">
+              <form>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="exampleRadios" [(ngModel)]="filterCategoryId" id="exampleRadios1" value="" (click)="filter()" checked>
+                  <label class="form-check-label" for="exampleRadios1">
+                    Wszystkie kategorie
+                  </label>
+                </div>
+                <div class="form-check" *ngFor="let category of categories">
+                  <input class="form-check-input" type="radio" name="exampleRadios" [(ngModel)]="filterCategoryId" id="exampleRadios2" [value]="category.id" (click)="filter()">
+                  <label class="form-check-label" for="exampleRadios2">
+                    {{category.name}}
+                  </label>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </article>
     </div>
+
     <div class="col">
       <div class="album py-5 bg-body-tertiary">
-        <div class="container ml-4">
+        <div class="container">
           <div class="row row-cols-1 row-cols-lg-3 row-cols-md-2 g-3">
             <div class="col" *ngFor="let shopitem of shopitems">
               <div class="card shadow-lg mb-3">
@@ -79,23 +101,23 @@
                   <div photoGalleryGroup>
                     <div *ngFor="let img of sort(shopitem.images)">
                       <div [photoGallery]="img.imageUri">
-                          <mat-carousel *ngIf="sort(shopitem.images)[0].imageUri == img.imageUri" timings="250ms ease-in"
-                                        [autoplay]="true"
-                                        interval="5000"
-                                        color="primary"
-                                        maxWidth="auto"
-                                        proportion="140"
-                                        [loop]="true"
-                                        [hideArrows]="true"
-                                        [hideIndicators]="true"
-                                        [useKeyboard]="false"
-                                        [useMouseWheel]="false"
-                                        orientation="ltr">
-                            <mat-carousel-slide #matCarouselSlide [image]="img.imageUri"
-                                                overlayColor="#00000040"
-                                                [hideOverlay]="false">
-                            </mat-carousel-slide>
-                          </mat-carousel>
+                        <mat-carousel *ngIf="sort(shopitem.images)[0].imageUri == img.imageUri" timings="250ms ease-in"
+                                      [autoplay]="true"
+                                      interval="5000"
+                                      color="primary"
+                                      maxWidth="auto"
+                                      proportion="140"
+                                      [loop]="true"
+                                      [hideArrows]="true"
+                                      [hideIndicators]="true"
+                                      [useKeyboard]="false"
+                                      [useMouseWheel]="false"
+                                      orientation="ltr">
+                          <mat-carousel-slide #matCarouselSlide [image]="img.imageUri"
+                                              overlayColor="#00000040"
+                                              [hideOverlay]="false">
+                          </mat-carousel-slide>
+                        </mat-carousel>
                       </div>
                     </div>
                   </div>
@@ -111,12 +133,12 @@
                   </div>
                 </div>
               </div>
-              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
   </div>
 
 <ngx-loading [show]="loadingItems || loadingCategory || loadingFiltering"

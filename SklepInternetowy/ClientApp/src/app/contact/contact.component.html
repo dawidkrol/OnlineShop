@@ -3,6 +3,16 @@
     <button class="btn btn-outline-primary" [routerLink]="['/contactinfo-management']">Zarządzanie informacjami</button>
   </div>
   <br />
+  <div class="w-100 d-flex justify-content-around flex-wrap">
+    <a class="d-flex flex-column justify-content-around align-items-center" href="https://www.facebook.com/profile.php?id=100087358879398" title="Facebook - Monali - rękodzieło" target="_blank">
+      <img width="64" height="64" src="https://img.icons8.com/fluency/96/facebook-new.png" alt="facebook" />
+      <h6>Monali - rękodzieło</h6>
+    </a>
+    <a class="d-flex flex-column justify-content-around align-items-center" title="Facebook - Monali - rękodzieło">
+      <img width="64" height="64" src="https://img.icons8.com/color/96/whatsapp--v1.png" alt="facebook" />
+      <h6>(+48) 791 815 574</h6>
+    </a>
+  </div>
   <div *ngFor="let info of service.contactinfos">
     <label>{{info.title}} : {{info.value}}</label>
   </div>

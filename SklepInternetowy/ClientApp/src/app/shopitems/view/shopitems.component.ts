@@ -26,6 +26,25 @@ export class ShopitemsComponent {
     this.getCategories();
   }
 
+  isExpandedOrdering = false;
+  isExpandedCategories = false;
+
+  collapseOrderingPart() {
+    this.isExpandedOrdering = false;
+  }
+
+  toggleOrderingPart() {
+    this.isExpandedOrdering = !this.isExpandedOrdering;
+  }
+
+  collapseCategoriesPart() {
+    this.isExpandedOrdering = false;
+  }
+
+  toggleCategoriesPart() {
+    this.isExpandedCategories = !this.isExpandedCategories;
+  }
+
   sort(table: ImageModel[]) {
     return table.sort((a, b) => b.orderNumber - a.orderNumber);
   }
